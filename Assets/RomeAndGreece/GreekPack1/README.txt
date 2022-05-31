@@ -1,0 +1,86 @@
+I would recommend downloading the Official Unity PostProcessing stack (https://www.assetstore.unity3d.com/en/#!/content/83912) and turning on Ambient Occlusion to improve the look of Low Poly models.
+
+All pieces are <1000 polygons, and come in 2 visually identical versions: standard (separate material) and optimized (single shared texture) version to allow both customization and optimization, depending on your needs.
+
+Full list of all 82 models:
+- Awning 1
+- Awning 2
+- Awning 3
+- Beam
+- Bench 1
+- Bench 2
+- Block
+- Bowl
+- Bucket
+- Bush 1
+- Bush 2
+- Bush 3
+- Column 1
+- Column 2
+- Decorative Bowl
+- Decorative Post
+- Dock
+- Door
+- Doorway
+- Drying Rack
+- Fence 1
+- Fence 2
+- Floor - Stone 1
+- Floor - Stone 2
+- Floor - Stone 3
+- Floor - Wood
+- Flower 1
+- Flower 2
+- Garden
+- Hanging Rack
+- Ladder
+- Parchment
+- Pool
+- Pot 1
+- Pot 2
+- Roof
+- Roof - Square
+- Roof Support
+- Roof Support - Square
+- Roof - Tile
+- Rope
+- Stairs - Stone
+- Stairs - Stone Corner
+- Stairs - Wood
+- Stairs - Wood Support
+- Statue Base
+- Step
+- Table
+- Tree 1
+- Tree 2
+- Tree 3
+- Vines
+- Wall 1
+- Wall 1 - Door
+- Wall 1 - Door (Single Sided)
+- Wall 1 - Medium
+- Wall 1 - Short
+- Wall 1 (Single Sided)
+- Wall 1 - Window
+- Wall 1 - Window (Single Sided)
+- Wall 2
+- Wall 2 - Corner
+- Wall 2 - Door
+- Wall 2 - Window
+- Wall 3
+- Wall 3 - Corner
+- Wall 3 - Door
+- Wall 3 - Short
+- Wall 3 - Top
+- Wall 3 - Top Corner
+- Wall 3 - Window
+- Wall Column 1
+- Wall Column 2
+- Wall Divider 1
+- Wall Divider 1 - Corner
+- Wall Divider 2
+- Wall Divider 2 - Corner
+- Wall Divider 3
+- Wall Divider 4
+- Window
+- Wood Pile

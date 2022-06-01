@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GitHubTest : MonoBehaviour
 {
-    private string str = "Test";
+    private string str = "Test01";
     // Start is called before the first frame update
     void Start()
     {

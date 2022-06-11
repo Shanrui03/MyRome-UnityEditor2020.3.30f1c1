@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    [Header("移动速度")]
+    [Header("Moving Speed")]
     public float speed = 12f;
 
-    [Header("重力加速度")]
+    [Header("Gravity")]
     public float gravity = -9.81f;
 
-    [Header("跳跃高度")]
+    [Header("Jump Distance")]
     public float jumpHeight = 3f;
 
     private CharacterController controller;
@@ -37,8 +37,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z; //根据角色的朝向进行基于x轴与z轴的移动   
 
-        //Vector3 move =new  Vector3(x, 0f, z); //错误的赋值。
-        /*这里赋值的的 vector3 是面对整个世界坐标系的，无论角色面朝任何方向，都只会在世界坐标系的x轴跟z轴上移动。*/
 
         controller.Move(move * speed * Time.deltaTime);
 

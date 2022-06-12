@@ -2456,6 +2456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FirstPerson
       objectReference: {fileID: 0}
+    - target: {fileID: 1854484608790545711, guid: a36202a19f1892841bc313cf6101903f, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3987326159242687711, guid: a36202a19f1892841bc313cf6101903f, type: 3}
       propertyPath: m_RootOrder
       value: 11

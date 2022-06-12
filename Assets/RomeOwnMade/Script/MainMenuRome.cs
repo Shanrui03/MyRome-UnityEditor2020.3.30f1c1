@@ -19,7 +19,7 @@ public class MainMenuRome : MonoBehaviour
     
     public void PlayGame()
     {
-        Application.LoadLevel("RomeScene");
+        SceneManager.LoadScene("RomeScene");
     }
 
     public void QuitGame()

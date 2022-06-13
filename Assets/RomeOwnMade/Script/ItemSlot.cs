@@ -35,6 +35,7 @@ public class ItemSlot : MonoBehaviour
        
         if(slotItem.isDroped)
         {
+            InventoryManager.UpdateItemInfo("");
             slotItem.isDroped = false;
             Destroy(this.gameObject);
         }

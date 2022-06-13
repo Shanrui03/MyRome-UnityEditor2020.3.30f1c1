@@ -93,6 +93,7 @@ public class PauseMenu : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 FontSight.SetActive(true);
+                InventoryManager.RefreshItem();
             }
         }
     }
@@ -103,6 +104,7 @@ public class PauseMenu : MonoBehaviour
         myBag.SetActive(false);
         FontSight.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
+        InventoryManager.RefreshItem();
     }
 
 }

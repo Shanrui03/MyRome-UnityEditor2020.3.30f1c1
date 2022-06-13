@@ -46,6 +46,7 @@ public class InventoryManager : MonoBehaviour
         newItem.slotNum.text = item.itemNum.ToString();
     }
 
+
     public static void RefreshItem()
     {
         for(int i = 0;i < instance.slotGrid.transform.childCount; i++)

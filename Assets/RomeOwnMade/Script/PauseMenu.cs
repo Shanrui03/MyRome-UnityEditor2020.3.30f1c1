@@ -8,6 +8,9 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+
+    public GameObject myBag;
+    bool isOpen = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,8 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            isOpen = false;
+            myBag.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
             if (GameIsPaused)
             {
@@ -30,6 +35,10 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
+        }
+        if(!GameIsPaused)
+        {
+            OpenMyBag();
         }
     }
 
@@ -63,4 +72,27 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void OpenMyBag()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            isOpen = !isOpen;
+            myBag.SetActive(isOpen);
+            if(isOpen)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
+    }
+
+    public void CloseByButton()
+    {
+        isOpen = false;
+        myBag.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 }

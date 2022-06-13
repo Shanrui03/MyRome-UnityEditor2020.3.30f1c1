@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1adbde275c78a2c409218c8590adad56, type: 3}
-  m_Name: TestItem
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  itemNmae: TestItem
-  itemImage: {fileID: 21300000, guid: b97c91e8b348f3f4ebdc11f5c82182cd, type: 3}
+  itemNmae: Sword
+  itemImage: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
   itemNum: 1
-  itemInfo: Test item information!
+  itemInfo: A mysterious Sword...
   isTreasure: 1

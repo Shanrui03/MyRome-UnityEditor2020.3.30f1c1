@@ -11,12 +11,16 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject myBag;
     bool isOpen = false;
+
+    public GameObject FontSight;
     // Start is called before the first frame update
     void Start()
     {
+        FontSight.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         GameIsPaused = false;
+        isOpen = false;
     }
 
     // Update is called once per frame
@@ -26,6 +30,7 @@ public class PauseMenu : MonoBehaviour
         {
             isOpen = false;
             myBag.SetActive(false);
+            FontSight.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
             if (GameIsPaused)
             {
@@ -46,6 +51,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        FontSight.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -81,10 +87,12 @@ public class PauseMenu : MonoBehaviour
             if(isOpen)
             {
                 Cursor.lockState = CursorLockMode.None;
+                FontSight.SetActive(false);
             }
             else
             {
                 Cursor.lockState = CursorLockMode.Locked;
+                FontSight.SetActive(true);
             }
         }
     }
@@ -93,6 +101,8 @@ public class PauseMenu : MonoBehaviour
     {
         isOpen = false;
         myBag.SetActive(false);
+        FontSight.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
     }
+
 }

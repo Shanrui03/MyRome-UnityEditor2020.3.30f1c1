@@ -17,3 +17,4 @@ MonoBehaviour:
   itemNum: 1
   itemInfo: Test item information!
   isTreasure: 1
+  isDroped: 0

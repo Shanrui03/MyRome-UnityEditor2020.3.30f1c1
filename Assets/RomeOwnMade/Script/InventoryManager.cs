@@ -31,6 +31,20 @@ public class InventoryManager : MonoBehaviour
         instance.itemInFormation.text = itemDescription;
     }
 
+    public static void DropItem(Item itemDroping)
+    {
+        if(itemDroping.itemNum == 1)
+        {
+            instance.myBag.itemList.Remove(itemDroping);
+            itemDroping.isDroped = true;
+        }
+        else
+        {
+            itemDroping.itemNum -= 1;
+        }
+        RefreshItem();
+    }
+
     // Update is called once per frame
     void Update()
     {

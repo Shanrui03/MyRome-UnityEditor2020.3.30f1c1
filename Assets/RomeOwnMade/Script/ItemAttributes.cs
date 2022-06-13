@@ -23,7 +23,6 @@ public class ItemAttributes : MonoBehaviour
         if (!inventoryAttri.itemList.Contains(itemAttri))
         {
             inventoryAttri.itemList.Add(itemAttri);
-            //InventoryManager.CreateNewItem(itemAttri);
         }
         else
         {

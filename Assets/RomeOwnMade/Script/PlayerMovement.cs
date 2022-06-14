@@ -19,9 +19,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private bool isGround;
 
+    public static bool isTalking = false;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        isTalking = false;
     }
 
 
@@ -37,30 +40,43 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z; //根据角色的朝向进行基于x轴与z轴的移动   
 
-
-        controller.Move(move * speed * Time.deltaTime);
-
-
-        //考虑重力的y轴移动：
-        velocity.y += gravity * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime);
-
-
-        //isGround = Physics.CheckSphere(groundCheck.position, groundDistance, GroundMask);
-        isGround = controller.isGrounded;
-
-        if (isGround && velocity.y < 0)
+        if (!isTalking)
         {
-            velocity.y = -2f;
+
+
+            controller.Move(move * speed * Time.deltaTime);
+
+            //考虑重力的y轴移动：
+            velocity.y += gravity * Time.deltaTime;
+
+            controller.Move(velocity * Time.deltaTime);
+
+
+            //isGround = Physics.CheckSphere(groundCheck.position, groundDistance, GroundMask);
+            isGround = controller.isGrounded;
+
+            if (isGround && velocity.y < 0)
+            {
+                velocity.y = -2f;
+            }
+
+            //跳跃
+            if (Input.GetButtonDown("Jump") && isGround)
+            {
+                velocity.y = Mathf.Sqrt(-2 * jumpHeight * gravity); //v=sqrt（2gh）；
+            }
         }
 
-        //跳跃
-        if (Input.GetButtonDown("Jump") && isGround)
-        {
-            velocity.y = Mathf.Sqrt(-2 * jumpHeight * gravity); //v=sqrt（2gh）；
-        }
+    }
 
+    public static void EnterTalking()
+    {
+        isTalking = true;
+    }
+
+    public static void LeaveTalking()
+    {
+        isTalking = false;
     }
 
 

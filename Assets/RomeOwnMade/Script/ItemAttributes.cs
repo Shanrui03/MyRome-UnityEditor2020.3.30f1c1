@@ -30,5 +30,6 @@ public class ItemAttributes : MonoBehaviour
         }
 
         InventoryManager.RefreshItem();
+        
     }
 }

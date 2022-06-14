@@ -52,15 +52,24 @@ namespace DialogueQuests
         private void Awake()
         {
             _instance = this;
-
-            NarrativeData.LoadLast();
+            NarrativeData.NewGame();
         }
 
         void Start()
         {
-
+            onPauseGameplay = new UnityAction(PauseGameInTalk);
+            onUnpauseGameplay = new UnityAction(UnpauseGameInTalk);
         }
 
+        void PauseGameInTalk()
+        {
+            PlayerMovement.EnterTalking();
+        }
+
+        void UnpauseGameInTalk()
+        {
+            PlayerMovement.LeaveTalking();
+        }
 
         void Update()
         {

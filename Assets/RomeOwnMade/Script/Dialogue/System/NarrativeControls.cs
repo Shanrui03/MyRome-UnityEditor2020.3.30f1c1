@@ -16,6 +16,7 @@ namespace DialogueQuests
         public KeyCode cancel_key = KeyCode.Backspace;
         public bool mouse_controls = true;
         public bool keyboard_controls = true;
+        bool isJournalShown = false;
 
         public UnityAction onPressTalk;
         public UnityAction onPressJournal;
@@ -40,6 +41,11 @@ namespace DialogueQuests
 
 
         private static NarrativeControls _instance;
+
+        private void Start()
+        {
+            isJournalShown = false;
+        }
 
         void Awake()
         {
@@ -90,24 +96,24 @@ namespace DialogueQuests
         private Vector2 GetArrowControl()
         {
             Vector2 wasd = Vector2.zero;
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.Alpha1))
                 wasd += Vector2.left;
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.Alpha2))
                 wasd += Vector2.right;
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.Alpha3))
                 wasd += Vector2.up;
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.Alpha4))
                 wasd += Vector2.down;
 
-            Vector2 arrows = Vector2.zero;
-            if (Input.GetKey(KeyCode.LeftArrow))
-                arrows += Vector2.left;
-            if (Input.GetKey(KeyCode.RightArrow))
-                arrows += Vector2.right;
-            if (Input.GetKey(KeyCode.UpArrow))
-                arrows += Vector2.up;
-            if (Input.GetKey(KeyCode.DownArrow))
-                arrows += Vector2.down;
+            //Vector2 arrows = Vector2.zero;
+            //if (Input.GetKey(KeyCode.LeftArrow))
+            //    arrows += Vector2.left;
+            //if (Input.GetKey(KeyCode.RightArrow))
+            //    arrows += Vector2.right;
+            //if (Input.GetKey(KeyCode.UpArrow))
+            //    arrows += Vector2.up;
+            //if (Input.GetKey(KeyCode.DownArrow))
+            //    arrows += Vector2.down;
 
             Vector2 menu = Vector2.zero;
             if (gamepad_linked)
@@ -115,7 +121,7 @@ namespace DialogueQuests
                 menu += gamepad_menu.Invoke();
             }
 
-            return wasd + arrows + menu;
+            return wasd + /*arrows +*/ menu;
         }
 
         private void OnPressArrow(Vector2 arrow)
@@ -142,6 +148,11 @@ namespace DialogueQuests
 
         private void OnPressJournal()
         {
+            isJournalShown = !isJournalShown;
+            if(isJournalShown)
+                Cursor.lockState = CursorLockMode.None;
+            else
+                Cursor.lockState = CursorLockMode.Locked;
             if (onPressJournal != null)
                 onPressJournal.Invoke();
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CatchItem : MonoBehaviour
 {
     public GameObject ItemNotice;
+    public GameObject NPCNotice;
     public float RayDistance = 3.0f;
     // Start is called before the first frame update
     void Start()
@@ -23,20 +24,28 @@ public class CatchItem : MonoBehaviour
             if (hit.collider.gameObject.tag == "Items")
             {
                 ItemNotice.SetActive(true);
+                NPCNotice.SetActive(false);
                 if (Input.GetMouseButtonDown(0))
                 {
                     CatchAndSave(hit);
                 }
             }
+            else if(hit.collider.gameObject.tag == "NPC")
+            {
+                ItemNotice.SetActive(false);
+                NPCNotice.SetActive(true);
+            }
             else
             {
                 ItemNotice.SetActive(false);
+                NPCNotice.SetActive(false);
             }
 
         }
         else
         {
             ItemNotice.SetActive(false);
+            NPCNotice.SetActive(false);
         }
 
 

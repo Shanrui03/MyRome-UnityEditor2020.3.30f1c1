@@ -44,9 +44,11 @@ namespace DialogueQuests
         }
 
         protected override void Update() {
-
+            if (PauseMenu.GameIsPaused)
+            {
+                Hide(true);
+            }
             base.Update();
-
         }
 
         private void RefreshPanel()
@@ -140,9 +142,20 @@ namespace DialogueQuests
         public void TogglePanel()
         {
             if (IsVisible())
+            {
                 Hide();
+                if(!PlayerMovement.isTalking)
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+            }
+  
             else
+            {
                 Show();
+                Cursor.lockState = CursorLockMode.None;
+            }
+               
         }
 
         private void HidePanel()

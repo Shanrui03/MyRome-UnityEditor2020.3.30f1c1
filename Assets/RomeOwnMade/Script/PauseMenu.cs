@@ -26,24 +26,31 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!PlayerMovement.isTalking)
         {
-            isOpen = false;
-            myBag.SetActive(false);
-            FontSight.SetActive(false);
-            Cursor.lockState = CursorLockMode.None;
-            if (GameIsPaused)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Resume();
+                isOpen = false;
+                myBag.SetActive(false);
+                FontSight.SetActive(false);
+                Cursor.lockState = CursorLockMode.None;
+                if (GameIsPaused)
+                {
+                    Resume();
+                }
+                else
+                {
+                    Pause();
+                }
             }
-            else
+            if (!GameIsPaused)
             {
-                Pause();
+                OpenMyBag();
             }
         }
-        if(!GameIsPaused)
+        else if(PlayerMovement.isTalking && isOpen)
         {
-            OpenMyBag();
+            CloseMyBag();
         }
     }
 
@@ -96,6 +103,14 @@ public class PauseMenu : MonoBehaviour
                 InventoryManager.RefreshItem();
             }
         }
+    }
+
+    public void CloseMyBag()
+    {
+        isOpen = false;
+        myBag.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        FontSight.SetActive(true);
     }
 
     public void CloseByButton()

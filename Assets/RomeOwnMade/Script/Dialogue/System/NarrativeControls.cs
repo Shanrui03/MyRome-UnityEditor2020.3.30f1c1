@@ -16,7 +16,6 @@ namespace DialogueQuests
         public KeyCode cancel_key = KeyCode.Backspace;
         public bool mouse_controls = true;
         public bool keyboard_controls = true;
-        bool isJournalShown = false;
 
         public UnityAction onPressTalk;
         public UnityAction onPressJournal;
@@ -44,7 +43,7 @@ namespace DialogueQuests
 
         private void Start()
         {
-            isJournalShown = false;
+
         }
 
         void Awake()
@@ -54,41 +53,44 @@ namespace DialogueQuests
 
         void Update()
         {
-            //Key controls
-            if (keyboard_controls && talk_key != KeyCode.None && Input.GetKeyDown(talk_key))
-                OnPressTalk(false);
-            if (keyboard_controls && journal_key != KeyCode.None && Input.GetKeyDown(journal_key))
-                OnPressJournal();
-            if (keyboard_controls && cancel_key != KeyCode.None && Input.GetKeyDown(cancel_key))
-                OnPressCancel(false);
-            if (mouse_controls && Input.GetMouseButtonDown(0))
-                OnPressTalk(true);
-            if (mouse_controls && Input.GetMouseButtonDown(1))
-                OnPressCancel(true);
-
-            if (keyboard_controls)
+            if (!PauseMenu.GameIsPaused)
             {
-                Vector3 arrow = GetArrowControl();
-                if (!ui_moved && arrow.magnitude > 0.5f)
+                //Key controls
+                if (keyboard_controls && talk_key != KeyCode.None && Input.GetKeyDown(talk_key))
+                    OnPressTalk(false);
+                if (keyboard_controls && journal_key != KeyCode.None && Input.GetKeyDown(journal_key))
+                    OnPressJournal();
+                if (keyboard_controls && cancel_key != KeyCode.None && Input.GetKeyDown(cancel_key))
+                    OnPressCancel(false);
+                if (mouse_controls && Input.GetMouseButtonDown(0))
+                    OnPressTalk(true);
+                if (mouse_controls && Input.GetMouseButtonDown(1))
+                    OnPressCancel(true);
+
+                if (keyboard_controls)
                 {
-                    ui_move = new Vector2(arrow.x, arrow.y);
-                    ui_moved = true;
-                    OnPressArrow(ui_move);
-                }
+                    Vector3 arrow = GetArrowControl();
+                    if (!ui_moved && arrow.magnitude > 0.5f)
+                    {
+                        ui_move = new Vector2(arrow.x, arrow.y);
+                        ui_moved = true;
+                        OnPressArrow(ui_move);
+                    }
 
-                if (arrow.magnitude < 0.5f)
-                    ui_moved = false;
+                    if (arrow.magnitude < 0.5f)
+                        ui_moved = false;
 
-                if (gamepad_linked)
-                {
-                    if (gamepad_talk.Invoke())
-                        OnPressTalk(false);
-                    if (gamepad_journal.Invoke())
-                        OnPressJournal();
-                    if (gamepad_cancel.Invoke())
-                        OnPressCancel(false);
+                    if (gamepad_linked)
+                    {
+                        if (gamepad_talk.Invoke())
+                            OnPressTalk(false);
+                        if (gamepad_journal.Invoke())
+                            OnPressJournal();
+                        if (gamepad_cancel.Invoke())
+                            OnPressCancel(false);
 
-                    gamepad_update?.Invoke();
+                        gamepad_update?.Invoke();
+                    }
                 }
             }
         }
@@ -148,11 +150,6 @@ namespace DialogueQuests
 
         private void OnPressJournal()
         {
-            isJournalShown = !isJournalShown;
-            if(isJournalShown)
-                Cursor.lockState = CursorLockMode.None;
-            else
-                Cursor.lockState = CursorLockMode.Locked;
             if (onPressJournal != null)
                 onPressJournal.Invoke();
         }

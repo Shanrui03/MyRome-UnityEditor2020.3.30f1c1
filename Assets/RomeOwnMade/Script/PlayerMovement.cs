@@ -72,11 +72,13 @@ public class PlayerMovement : MonoBehaviour
     public static void EnterTalking()
     {
         isTalking = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public static void LeaveTalking()
     {
         isTalking = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 

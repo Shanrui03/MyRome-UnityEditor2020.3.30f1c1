@@ -7,7 +7,7 @@ using DialogueQuests;
 [CreateAssetMenu(fileName = "CheckItem", menuName = "CustomEffect/CheckItem")]
 public class CheckItem : CustomEffect
 {
-    public ScriptableInventory myBag;
+    public Item QuestItem;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +22,6 @@ public class CheckItem : CustomEffect
 
     public override void DoEffect(Actor player)
     {
-        
+        InventoryManager.DropItem(QuestItem);
     }
 }

@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
+    public static bool GameIsEnd = false;
     public GameObject pauseMenuUI;
 
     public GameObject myBag;
+    public GameObject endUI;
     bool isOpen = false;
 
     public GameObject FontSight;
@@ -20,6 +22,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         GameIsPaused = false;
+        GameIsEnd = false;
         isOpen = false;
     }
 
@@ -51,6 +54,19 @@ public class PauseMenu : MonoBehaviour
         else if(PlayerMovement.isTalking && isOpen)
         {
             CloseMyBag();
+        }
+
+        if(GameIsEnd && !endUI.activeSelf)
+        {
+            foreach (Transform child in gameObject.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+            endUI.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            FontSight.SetActive(false);
+            Time.timeScale = 0f;
+            GameIsPaused = true;
         }
     }
 
@@ -121,5 +137,6 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         InventoryManager.RefreshItem();
     }
+
 
 }

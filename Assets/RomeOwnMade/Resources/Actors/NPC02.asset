@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61ea64a65dc7f514d84608bd9fa6b23b, type: 3}
-  m_Name: NPC01
+  m_Name: NPC02
   m_EditorClassIdentifier: 
-  actor_id: 002
+  actor_id: final_one
   is_player: 0
-  title: Villager01
-  portrait: {fileID: 21300000, guid: c937997b82def39499fe080e4fed3eb0, type: 3}
+  title: Village Chief
+  portrait: {fileID: 21300000, guid: 09c4fe98b9874f746a71d3162d5353d8, type: 3}
   animation: {fileID: 0}
   show_bubble: 1
   bubble_offset: {x: 0, y: 0, z: 0}

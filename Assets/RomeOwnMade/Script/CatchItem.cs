@@ -19,7 +19,7 @@ public class CatchItem : MonoBehaviour
 
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, RayDistance))
+        if (Physics.Raycast(ray, out hit, RayDistance) && !PauseMenu.GameIsEnd)
         {
             if (hit.collider.gameObject.tag == "Items")
             {

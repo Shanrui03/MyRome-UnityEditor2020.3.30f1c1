@@ -284,6 +284,7 @@ MonoBehaviour:
   slotImage: {fileID: 5741053740195040588}
   slotNum: {fileID: 2848800797606529376}
   DropBtn: {fileID: 730607166348907899}
+  TreasureNotice: {fileID: 0}
 --- !u!1 &4398399699657187919
 GameObject:
   m_ObjectHideFlags: 0

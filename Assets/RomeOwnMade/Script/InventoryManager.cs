@@ -11,6 +11,11 @@ public class InventoryManager : MonoBehaviour
     public GameObject slotGrid;
     public ItemSlot slotPrefab;
     public Text itemInFormation;
+    public GameObject TreasureNotice;
+    public float fadeSpeed = 1f;
+    public float waitTime = 1f;
+
+
 
     private void Awake()
     {
@@ -48,7 +53,32 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (instance.TreasureNotice.activeSelf)
+        {
+            if (waitTime >= 0)
+            {
+                waitTime = waitTime - Time.deltaTime;
+            }
+            if (instance.TreasureNotice.GetComponent<Text>().color.a != 0 && waitTime <= 0)
+            {
+                instance.TreasureNotice.GetComponent<Text>().color = new Color(
+                    instance.TreasureNotice.GetComponent<Text>().color.r,
+                    instance.TreasureNotice.GetComponent<Text>().color.g,
+                    instance.TreasureNotice.GetComponent<Text>().color.b,
+                    Mathf.Lerp(instance.TreasureNotice.GetComponent<Text>().color.a
+                    , 0, fadeSpeed * Time.deltaTime));
+                if (Mathf.Abs(0 - instance.TreasureNotice.GetComponent<Text>().color.a) <= 0.01f)
+                {
+                    instance.TreasureNotice.GetComponent<Text>().color = new Color(
+                    instance.TreasureNotice.GetComponent<Text>().color.r,
+                    instance.TreasureNotice.GetComponent<Text>().color.g,
+                    instance.TreasureNotice.GetComponent<Text>().color.b,
+                    0f);
+                    instance.TreasureNotice.SetActive(false);
+                }
+
+            }
+        }
     }
 
     public static void CreateNewItem(Item item)
@@ -75,4 +105,17 @@ public class InventoryManager : MonoBehaviour
             CreateNewItem(instance.myBag.itemList[i]);
         }
     }
+
+    public static void ShowTreasureNotice()
+    {
+        instance.TreasureNotice.SetActive(true);
+        instance.TreasureNotice.GetComponent<Text>().color = new Color(
+          instance.TreasureNotice.GetComponent<Text>().color.r,
+          instance.TreasureNotice.GetComponent<Text>().color.g,
+          instance.TreasureNotice.GetComponent<Text>().color.b,
+          1f);
+        instance.waitTime = 1f;
+    }
+
+    
 }

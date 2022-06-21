@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0848ee426e2900940b87380fee6d0b37, type: 3}
   m_Name: CompleteGame2
   m_EditorClassIdentifier: 
-  FinalQuest: {fileID: 0}
+  FinalQuest: {fileID: 11400000, guid: 96217e93b4d4c8a42b39cf975b05072b, type: 2}

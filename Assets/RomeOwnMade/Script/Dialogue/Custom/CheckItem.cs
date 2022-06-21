@@ -8,18 +8,6 @@ using DialogueQuests;
 public class CheckItem : CustomEffect
 {
     public Item QuestItem;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public override void DoEffect(Actor player)
     {
         InventoryManager.DropItem(QuestItem);

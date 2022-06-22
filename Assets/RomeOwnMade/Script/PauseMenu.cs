@@ -25,6 +25,9 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         GameIsEnd = false;
         isOpen = false;
+        PlayerPrefs.SetFloat("Volume", 1);
+        PlayerPrefs.SetInt("Quality", 4);
+        QualitySettings.SetQualityLevel(4);
     }
 
     // Update is called once per frame
@@ -142,5 +145,6 @@ public class PauseMenu : MonoBehaviour
     public void ShowSettings()
     {
         settingsMenuUI.SetActive(!settingsMenuUI.activeSelf);
+        pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
     }
 }

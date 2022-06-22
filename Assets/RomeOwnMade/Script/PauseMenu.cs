@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     public static bool GameIsEnd = false;
     public GameObject pauseMenuUI;
+    public GameObject settingsMenuUI;
 
     public GameObject myBag;
     public GameObject endUI;
@@ -138,5 +139,8 @@ public class PauseMenu : MonoBehaviour
         InventoryManager.RefreshItem();
     }
 
-
+    public void ShowSettings()
+    {
+        settingsMenuUI.SetActive(!settingsMenuUI.activeSelf);
+    }
 }

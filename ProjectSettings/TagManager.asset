@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Items
   - NPC
+  - gameSettings
+  - MainMenu
   layers:
   - Default
   - TransparentFX

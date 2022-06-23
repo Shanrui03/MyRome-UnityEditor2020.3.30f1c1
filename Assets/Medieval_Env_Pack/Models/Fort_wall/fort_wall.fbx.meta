@@ -1,0 +1,138 @@
+fileFormatVersion: 2
+guid: 5694a891ff583154ba203ab078699cb7
+timeCreated: 1479469966
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: fort_tower
+    100002: //RootNode
+    100004: fort_wall
+    100006: fort_tower_door
+    100008: fort_tower_door_2
+    100010: fort_tower_door_3
+    100012: fort_tower_door_4
+    100014: fort_tower.002
+    100016: fort_tower_corner
+    100018: fort_tower_door.001
+    100020: fort_tower_door_2.001
+    100022: fort_tower_door_3.001
+    100024: fort_tower_door_4.001
+    100026: fort_wall_segment
+    400000: fort_tower
+    400002: //RootNode
+    400004: fort_wall
+    400006: fort_tower_door
+    400008: fort_tower_door_2
+    400010: fort_tower_door_3
+    400012: fort_tower_door_4
+    400014: fort_tower.002
+    400016: fort_tower_corner
+    400018: fort_tower_door.001
+    400020: fort_tower_door_2.001
+    400022: fort_tower_door_3.001
+    400024: fort_tower_door_4.001
+    400026: fort_wall_segment
+    2300000: fort_tower
+    2300002: fort_wall
+    2300004: fort_tower_door
+    2300006: fort_tower_door_2
+    2300008: fort_tower_door_3
+    2300010: fort_tower_door_4
+    2300012: fort_tower.002
+    2300014: fort_tower_corner
+    2300016: fort_tower_door.001
+    2300018: fort_tower_door_2.001
+    2300020: fort_tower_door_3.001
+    2300022: fort_tower_door_4.001
+    2300024: fort_wall_segment
+    3300000: fort_tower
+    3300002: fort_wall
+    3300004: fort_tower_door
+    3300006: fort_tower_door_2
+    3300008: fort_tower_door_3
+    3300010: fort_tower_door_4
+    3300012: fort_tower.002
+    3300014: fort_tower_corner
+    3300016: fort_tower_door.001
+    3300018: fort_tower_door_2.001
+    3300020: fort_tower_door_3.001
+    3300022: fort_tower_door_4.001
+    3300024: fort_wall_segment
+    4300000: fort_wall
+    4300002: fort_tower
+    4300004: fort_tower_door_3
+    4300006: fort_tower_door_4
+    4300008: fort_tower_door_2
+    4300010: fort_tower_door
+    4300012: fort_tower.002
+    4300014: fort_tower_corner
+    4300016: fort_tower_door.001
+    4300018: fort_tower_door_2.001
+    4300020: fort_tower_door_4.001
+    4300022: fort_tower_door_3.001
+    4300024: fort_wall_segment
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

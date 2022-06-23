@@ -7,6 +7,7 @@ using System.Linq;
 public class QualityController : MonoBehaviour
 {
     [SerializeField] private Dropdown quality;
+    private int startQuality;
     // Start is called before the first frame update
     private void Start()
     {
@@ -18,6 +19,7 @@ public class QualityController : MonoBehaviour
     public void LoadQuality()
     {
         QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("Quality"));
+        startQuality = PlayerPrefs.GetInt("Quality");
     }
 
     public void BuildQualityMenu()
@@ -31,5 +33,12 @@ public class QualityController : MonoBehaviour
     {
         QualitySettings.SetQualityLevel(quality.value);
         PlayerPrefs.SetInt("Quality", quality.value);
+        startQuality = quality.value;
+    }
+
+    public void BackFromQualitySettings()
+    {
+        QualitySettings.SetQualityLevel(startQuality);
+        quality.value = startQuality;
     }
 }

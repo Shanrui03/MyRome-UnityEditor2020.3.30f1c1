@@ -5939,6 +5939,7 @@ MonoBehaviour:
   LoadingScreen: {fileID: 1914272025}
   EnterGameScreen: {fileID: 1587304878}
   SettingsMenu: {fileID: 1708701537}
+  BGM: {fileID: 554831524}
 --- !u!1 &2127439935
 GameObject:
   m_ObjectHideFlags: 0

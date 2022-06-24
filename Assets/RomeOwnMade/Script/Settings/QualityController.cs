@@ -9,7 +9,7 @@ public class QualityController : MonoBehaviour
     [SerializeField] private Dropdown quality;
     private int startQuality;
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         LoadQuality();
         BuildQualityMenu();

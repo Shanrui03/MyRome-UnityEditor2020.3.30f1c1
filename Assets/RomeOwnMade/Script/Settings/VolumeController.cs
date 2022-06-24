@@ -9,17 +9,11 @@ public class VolumeController : MonoBehaviour
     private Slider audioSlider;
     private float startVolume;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         menuAudio = GameObject.FindGameObjectWithTag("MainMenu").transform.GetComponent<AudioSource>();
         audioSlider = GameObject.FindGameObjectWithTag("gameSettings").transform.GetComponentInChildren<Slider>();
         LoadVolume();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //VolumeControll();
     }
 
     public void VolumeControll()

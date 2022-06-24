@@ -14,26 +14,26 @@ public class PauseMenu : MonoBehaviour
     public GameObject myBag;
     public GameObject endUI;
     bool isOpen = false;
+    bool isSettingsShown = false;
 
     public GameObject FontSight;
     // Start is called before the first frame update
     void Start()
     {
+        settingsMenuUI.SetActive(false);
         FontSight.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         GameIsPaused = false;
         GameIsEnd = false;
         isOpen = false;
-        PlayerPrefs.SetFloat("Volume", 1);
-        PlayerPrefs.SetInt("Quality", 4);
-        QualitySettings.SetQualityLevel(4);
+        isSettingsShown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!PlayerMovement.isTalking)
+        if (!PlayerMovement.isTalking && !isSettingsShown)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -146,5 +146,6 @@ public class PauseMenu : MonoBehaviour
     {
         settingsMenuUI.SetActive(!settingsMenuUI.activeSelf);
         pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
+        isSettingsShown = !isSettingsShown;
     }
 }

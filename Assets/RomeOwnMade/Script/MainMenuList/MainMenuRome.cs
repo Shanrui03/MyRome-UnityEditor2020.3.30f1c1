@@ -8,7 +8,7 @@ public class MainMenuRome : MonoBehaviour
     public GameObject LoadingScreen;
     public GameObject EnterGameScreen;
     public GameObject SettingsMenu;
-
+    public GameObject BGM;
 
     private void Start()
     {
@@ -19,6 +19,11 @@ public class MainMenuRome : MonoBehaviour
         //Screen.fullScreen = true;
         //Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
 
+    }
+
+    private void Update()
+    {
+        BGM.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Volume");
     }
     public void PlayGame()
     {

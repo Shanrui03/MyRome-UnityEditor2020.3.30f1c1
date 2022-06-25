@@ -28,6 +28,8 @@ namespace DialogueQuests
         [Tooltip("Dialogue prefab that should be loaded in all scenes")]
         public GameObject load_dialogue;
 
+
+        public bool isTalking = false;
         public string GetTitle()
         {
             return NarrativeTool.Translate(title);

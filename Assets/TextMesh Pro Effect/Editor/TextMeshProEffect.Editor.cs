@@ -1,9 +1,9 @@
 using UnityEditor;
 using UnityEngine;
-
+using TMPro;
 namespace TMPro.Editor
 {
-	[CustomEditor(typeof(TextMeshProEffect))]
+
 	public class TextMeshProEffectEditor : UnityEditor.Editor
 	{
 		public override bool RequiresConstantRepaint()

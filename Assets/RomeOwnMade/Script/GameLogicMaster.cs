@@ -8,7 +8,8 @@ public class GameLogicMaster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_FinalQuest.desc = "Please Compelete 3 Quests!\r\n1.Help Sam solve his problems.";
+        m_FinalQuest.title = "Complete Slinger's request";
+        m_FinalQuest.desc = "You have suddenly travelled to Rome... First take Slinger's advice and go and help Vibia!";
     }
 
     // Update is called once per frame

@@ -19,7 +19,6 @@ public class ItemAttributes : MonoBehaviour
 
     public void ItemCollected()
     {
-        Debug.Log("ItemCollected");
         if (!inventoryAttri.itemList.Contains(itemAttri))
         {
             inventoryAttri.itemList.Add(itemAttri);

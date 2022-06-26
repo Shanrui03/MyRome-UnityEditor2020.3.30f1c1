@@ -6,6 +6,7 @@ public class CatchItem : MonoBehaviour
 {
     public GameObject ItemNotice;
     public GameObject NPCNotice;
+    public GameObject TriggerNotice;
     public float RayDistance = 3.0f;
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class CatchItem : MonoBehaviour
             {
                 ItemNotice.SetActive(true);
                 NPCNotice.SetActive(false);
+                TriggerNotice.SetActive(false);
                 if (Input.GetMouseButtonDown(0))
                 {
                     CatchAndSave(hit);
@@ -34,11 +36,19 @@ public class CatchItem : MonoBehaviour
             {
                 ItemNotice.SetActive(false);
                 NPCNotice.SetActive(true);
+                TriggerNotice.SetActive(false);
+            }
+            else if (hit.collider.gameObject.tag == "Trigger")
+            {
+                ItemNotice.SetActive(false);
+                NPCNotice.SetActive(false);
+                TriggerNotice.SetActive(true);
             }
             else
             {
                 ItemNotice.SetActive(false);
                 NPCNotice.SetActive(false);
+                TriggerNotice.SetActive(false);
             }
 
         }
@@ -46,6 +56,7 @@ public class CatchItem : MonoBehaviour
         {
             ItemNotice.SetActive(false);
             NPCNotice.SetActive(false);
+            TriggerNotice.SetActive(false);
         }
 
 

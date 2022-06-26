@@ -1,0 +1,73 @@
+//
+// Deluxe Compass Bar
+// A GUI and script package to include a compass and object tracking GUI to your game
+// Copyright 2016 While Fun Games
+// http://whilefun.com
+//
+
+
+Version 1.3:
+-----------
+-Removed all javascript source code files as they are now deprecated for all Unity Assets
+-Did efficiency pass on all UI elements to ensure there were no extra raycast targets
+-Changed CompassCanvas to be "Screen Space - Overlay" instead of "Screen Space - Camera" because the latter had no advantage and made for trickier setup
+-Added a demo helper script to hide cursor on start
+-Updated README instructions
+-Dropping support for Unity 4.x. Now requires Unity v5.5.4p3 or higher.
+
+
+=========================================
+>Release Notes (for version 1.2 or above):
+=========================================
+
+Important Note: 
+--------------
+The following is for anyone who has used the previous "OnGUI" or "IMGUI" version of Deluxe Compass Bar. 
+
+If this is the first time you're using Deluxe Compass Bar, please see README.txt. You can ignore the rest of this document.
+
+
+Update Overview:
+---------------
+This is a major update to Deluxe Compass Bar. The most notable difference is that Deluxe Compass Bar now uses the Canvas UI system added to Unity version 4.6 and above. Deluxe Compass Bar no longer uses the Immediate Mode GUI (aka "OnGUI" or "IMGUI") functionality. As with the Unity Canvas UI system, this change will allow for greater performance on all platforms.
+
+Major Structural Updates:
+------------------------
+>CompassCamera is now child of player object, TheCompass prefab just needs to be in the scene somewhere (e.g. 0,0,0)
+
+>Flags for Compass Marker decoration are stored in the CompassMarkerScript itself. However, there are Theme/Skin flags for decorations in The Compass Script as well. This allows you to yield to The Compass theme/skin settings when creating compass markers for objects in your game world, but also create special instances that break the rules, if you need to. See demo levels and DemoMarkerSpawnerScript for examples on how this is used.
+
+>Compass Marker and related object clean up is now self-contained in CompassMarkerScript. When the script is removed, it automatically removes all its associated UI elements.
+
+>*All* graphics for a given theme/skin now live in TheCompass prefab, which will make it easier to customize.
+
+>To reposition the compass GUI, you can just drag it to the desired position in the scene using the built in native Unity X/Y handles. To do this, select all children of CompassCanvas (inside TheCompass prefab), and drag the X/Y handles until the Game Preview window looks how you want it to.
+
+>Compass Marker Script defaults to a simple "Just the icon" mode, which allows for simplified script-based addition of COmpass Markers (just 2 lines of code!)
+
+Major Prefab Updates:
+--------------------
++Compass Camera: Required for Unity's Canvas UI system. 
++CompassMarker3DOverlay: A Game Object that houses the 3D overlay Canvas and Image for a compass marker that requires it
++CompassMarkerDistanceLabel: A UI element that houses the distance label Text for a compass marker that requires it
++CompassMarkerIcon: A UI element that houses the main Sprite Image for any given compass marker.
++CompassMarkerOffScreenHintLeft: A UI element that houses the Off Screen Hint arrow and icon Images for a compass marker that requires it
++CompassMarkerOffScreenHintRight: Similar as CompassMarkerOffScreenHintLeft
++CompassMarkerUpDownArrow: A UI element that houses the up or down arrow Image for any given compass marker.
+~TheCompass: All images now Sprite instead of Texture2D
+~TheCompass: TheCompassScript has been reduced in size, updates for UI elements now live inside CompassMarkerScript
+-CompassMarker: This prefab is redundant, and now all logic for COmpass Markers is self-contained in CompassMarkerScript
+
+Inspector Variable Changes:
+--------------------------
++Up Down Arrow Offset: Replaces Compass GUI Marker Arrow Y Offset
++Distance Text Offset: Replaces Compass GUI Marker Distance Y Offset
+-Compass Screen Position: No longer required. Can adjust via Canvas and X/Y handles inside the scene editor (see above)
+-Compass GUI Scale: No longer required, as scale is handled in CompassCanvas native Unity UI object properties
+-Compass Marker: No longer required, as we're not instantiating prefabs of game objects to do tracking
+-Compass Vertical/Horizontal pixel offsets: No longer required, see Compass GUI Scale
+-Min/Max GUI Label Position: No longer required, calculated using Canvas UI system
+-Compass Font Style: No longer required, handled by Canvas UI Text element
+-Compass GUI Marker Arrow Y Offset: Replaced by Up Down Arrow Offset
+-Compass GUI Marker Distance Y Offset: Replaced by Distance Text Offset
+

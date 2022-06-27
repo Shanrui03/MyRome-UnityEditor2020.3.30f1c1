@@ -6,6 +6,7 @@ public class NPCController : MonoBehaviour
 {
     public ActorData NPCActor;
     public Transform player;
+    public GameObject theCompass;
     private Animator NPCAnimator;
     private Transform startTransform;
     private void Awake()
@@ -24,6 +25,23 @@ public class NPCController : MonoBehaviour
         else
         {
             NPCAnimator.SetBool("Talk", false);
+        }
+    }
+
+    public void MarkNPCorNot(bool addOrNot)
+    {
+        if (addOrNot)
+        {
+            this.gameObject.AddComponent<CompassMarkerScript>();
+            this.gameObject.GetComponent<CompassMarkerScript>().setMarkerIconType(TheCompassScript.IconType.eImportant);
+            this.gameObject.GetComponent<CompassMarkerScript>().showUpDownArrow = this.theCompass.GetComponent<TheCompassScript>().drawUpDownArrows;
+            this.gameObject.GetComponent<CompassMarkerScript>().showDistanceLabel = this.theCompass.GetComponent<TheCompassScript>().drawDistanceText;
+            this.gameObject.GetComponent<CompassMarkerScript>().showOffScreenHints = true;
+            this.gameObject.GetComponent<CompassMarkerScript>().initTrackingOfMarker();
+        }
+        else
+        {
+            Destroy(this.gameObject.GetComponent<CompassMarkerScript>());
         }
     }
 }

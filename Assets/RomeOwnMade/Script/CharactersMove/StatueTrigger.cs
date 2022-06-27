@@ -4,20 +4,11 @@ using UnityEngine;
 
 public class StatueTrigger : MonoBehaviour
 {
-    static StatueTrigger instance;
-
-    private void Awake()
+    public GameObject Ladder;
+    public void StatueTriggerOn()
     {
-        if (instance != null)
-        {
-            Destroy(this);
-        }
-        instance = this;
-    }
-
-    public static void StatueTriggerOn()
-    {
-        instance.gameObject.SetActive(!instance.gameObject.activeSelf);
+        this.gameObject.SetActive(false);
+        Ladder.SetActive(true);
     }
 
 }

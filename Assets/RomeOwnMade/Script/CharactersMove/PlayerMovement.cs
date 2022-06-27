@@ -17,8 +17,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Avator")]
     public GameObject playerAvator;
 
+    [Header("Audio")]
+    public AudioSource walkAudio;
+
     private CharacterController controller;
     private Animator playerAnimator;
+
 
     private Vector3 velocity;
     private bool isGround;
@@ -45,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;    
 
-        if (!isTalking)
+        if (!isTalking && !PauseMenu.GameIsPaused)
         {
             controller.Move(move * speed * Time.deltaTime);
 
@@ -56,10 +60,15 @@ public class PlayerMovement : MonoBehaviour
             if(move != Vector3.zero)
             {
                 playerAnimator.SetBool("Walk", true);
+                if (!walkAudio.isPlaying)
+                {
+                    walkAudio.Play();
+                }
             }
             else
             {
                 playerAnimator.SetBool("Walk", false);
+                walkAudio.Stop();
             }
 
             isGround = controller.isGrounded;
@@ -83,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnimator.SetBool("Walk", false);
             playerAnimator.SetBool("Jump", false);
+            walkAudio.Stop();
         }
 
     }

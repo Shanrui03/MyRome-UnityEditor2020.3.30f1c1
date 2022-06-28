@@ -43,7 +43,8 @@ public class PlayerMovement : MonoBehaviour
     }
     void movement()
     {
-        
+        isGround = controller.isGrounded;
+
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -60,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
             if(move != Vector3.zero)
             {
                 playerAnimator.SetBool("Walk", true);
-                if (!walkAudio.isPlaying)
+                if (!walkAudio.isPlaying && isGround)
                 {
                     walkAudio.Play();
                 }
@@ -71,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
                 walkAudio.Stop();
             }
 
-            isGround = controller.isGrounded;
+            //isGround = controller.isGrounded;
             if (isGround && velocity.y < 0)
             {
                 velocity.y = -2f;
@@ -82,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerAnimator.SetBool("Jump", true);
                 velocity.y = Mathf.Sqrt(-2 * jumpHeight * gravity); //v=sqrt£¨2gh£©£»
+                walkAudio.Stop();
             }
             else if(isGround)
             {

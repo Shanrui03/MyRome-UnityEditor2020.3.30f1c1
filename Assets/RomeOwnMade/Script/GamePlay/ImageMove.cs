@@ -8,17 +8,14 @@ public class ImageMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = Screen.height / 10;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, -speed * Time.deltaTime, 0);
-        if (this.transform.localPosition.y <= -Screen.height / 2)
-        {
-            Destroy(this.gameObject);
-        }
+        speed = Screen.height / 3;
+        transform.Translate(0, -speed * Time.deltaTime, 0, Space.Self);
     }
 
     private void OnTriggerEnter(Collider other)

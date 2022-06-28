@@ -5,13 +5,19 @@ using UnityEngine.UI;
 using DialogueQuests;
 public class GameLogicMaster : MonoBehaviour
 {
+    [Header("QUEST")]
     public QuestData m_FinalQuest;
+
+    [Header("QUIZ")]
     public GameObject quizUI;
+
+    [Header("MILK")]
     public GameObject milkUI;
     public GameObject MilkImage;
     public GameObject MilkPanel;
     public Text MilkCountDown;
     public Text MilkScore;
+
     public static float lastAccuracy;
     public static int lastAnserint;
     public static bool isMilkUIShown;
@@ -91,7 +97,7 @@ public class GameLogicMaster : MonoBehaviour
 
     public void CreateMilk()
     {
-        float x = Random.Range(-Screen.width / 3, Screen.width / 3);
+        float x = Random.Range(-Screen.width*2 / 3, Screen.width*2 / 3);
         float y = Screen.height / 3;
         GameObject Milk = Instantiate(MilkImage, MilkPanel.transform);
         Milk.transform.localPosition = new Vector3(x, y, 0);
@@ -104,7 +110,7 @@ public class GameLogicMaster : MonoBehaviour
         countdownTime = 15f;
         if (isMilkUIShown)
         {
-            InvokeRepeating("CreateMilk", 0.1f, 1f);
+            InvokeRepeating("CreateMilk", 0.1f, 0.6f);
             milkScroe = 0;
         }
         else

@@ -8,23 +8,23 @@ public class BucketMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = Screen.width / 10;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        speed = Screen.width / 5;
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(-speed * Time.deltaTime, 0, 0);
+            transform.Translate(-speed * Time.deltaTime, 0, 0, Space.Self);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(speed * Time.deltaTime, 0, 0);
+            transform.Translate(speed * Time.deltaTime, 0, 0, Space.Self);
         }
 
-        
+
 
     }
 }

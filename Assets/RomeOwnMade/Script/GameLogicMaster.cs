@@ -37,4 +37,20 @@ public class GameLogicMaster : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
+
+    public void ChangeDescOfMain(int Quest)
+    {
+        switch (Quest)
+        {
+            case 1://Vibia's Quest Complete
+                m_FinalQuest.title = "Go back to Slinger";
+                m_FinalQuest.desc = "Success in helping Vibia! Let's go back to Slinger!";
+                break;
+            case 2://Titus's Quest Begin
+                m_FinalQuest.title = "Go to Titus";
+                m_FinalQuest.desc = "In order to see the Emperor, we have to go to Titus first to ask for recommendations!";
+                break;
+        }
+
+    }
 }

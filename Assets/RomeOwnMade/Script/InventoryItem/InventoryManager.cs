@@ -42,6 +42,7 @@ public class InventoryManager : MonoBehaviour
         {
             instance.myBag.itemList.Remove(itemDroping);
             itemDroping.isDroped = true;
+            instance.itemInFormation.text = "";
         }
         else
         {
@@ -93,6 +94,7 @@ public class InventoryManager : MonoBehaviour
 
     public static void RefreshItem()
     {
+        instance.itemInFormation.text = "";
         for(int i = 0;i < instance.slotGrid.transform.childCount; i++)
         {
             if (instance.slotGrid.transform.childCount == 0)

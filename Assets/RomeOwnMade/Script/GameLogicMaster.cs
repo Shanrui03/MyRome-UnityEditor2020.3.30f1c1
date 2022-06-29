@@ -16,7 +16,7 @@ public class GameLogicMaster : MonoBehaviour
     public GameObject MilkImage;
     public GameObject PunishImage;
     public GameObject MilkPanel;
-    public GameObject MilkSubmitNotice;
+    public Text MilkSubmitNotice;
     public Text MilkCountDown;
     public Text MilkScore;
 
@@ -25,6 +25,7 @@ public class GameLogicMaster : MonoBehaviour
     public static bool isMilkUIShown;
     public static float countdownTime;
     public static int milkScroe;
+    public static int finalmilkScore;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +35,7 @@ public class GameLogicMaster : MonoBehaviour
         lastAnserint = 0;
         countdownTime = 30f;
         milkScroe = 0;
+        finalmilkScore = 0;
     }
 
     // Update is called once per frame
@@ -53,8 +55,13 @@ public class GameLogicMaster : MonoBehaviour
             if(countdownTime <= 0f)
             {
                 countdownTime = 30f;
+                finalmilkScore = milkScroe;
                 isMilkUIShown = false;
-                MilkSubmitNotice.SetActive(true);
+                MilkSubmitNotice.gameObject.SetActive(true);
+                if (finalmilkScore >= 20)
+                    MilkSubmitNotice.text = "Congratulations! You did it!\r\nPress T to Continue!";
+                else
+                    MilkSubmitNotice.text = "You have failed! Please try again!\r\nPress T to Continue!";
                 MilkCountDown.text = "Time:0.0";
                 RepeatCreating(false);
                 for (int i = 0; i < MilkPanel.transform.childCount; i++)
@@ -67,7 +74,7 @@ public class GameLogicMaster : MonoBehaviour
             }
         }
 
-        if(MilkSubmitNotice.activeSelf)
+        if(MilkSubmitNotice.gameObject.activeSelf)
         {
             if(Input.GetKeyDown(KeyCode.T))
             {
@@ -127,7 +134,7 @@ public class GameLogicMaster : MonoBehaviour
     {
         milkUI.SetActive(true);
         isMilkUIShown = true;
-        MilkSubmitNotice.SetActive(false);
+        MilkSubmitNotice.gameObject.SetActive(false);
         countdownTime = 30f;
         RepeatCreating(true);
         milkScroe = 0;

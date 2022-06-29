@@ -23,10 +23,11 @@ public class ImageMove : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if(!isPunished)
+            if (!isPunished)
                 GameLogicMaster.milkScroe++;
             else
                 GameLogicMaster.milkScroe--;
+            
             Destroy(this.gameObject);
         }
     }

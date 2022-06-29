@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ImageMove : MonoBehaviour
 {
+    public bool isPunished;
     private float speed;
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,10 @@ public class ImageMove : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            GameLogicMaster.milkScroe++;
+            if(!isPunished)
+                GameLogicMaster.milkScroe++;
+            else
+                GameLogicMaster.milkScroe--;
             Destroy(this.gameObject);
         }
     }

@@ -14,7 +14,7 @@ public class BucketMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed = Screen.width / 5;
+        speed = Screen.width / 3;
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(-speed * Time.deltaTime, 0, 0, Space.Self);

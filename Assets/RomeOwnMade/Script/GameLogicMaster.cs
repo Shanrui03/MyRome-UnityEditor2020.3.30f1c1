@@ -14,7 +14,9 @@ public class GameLogicMaster : MonoBehaviour
     [Header("MILK")]
     public GameObject milkUI;
     public GameObject MilkImage;
+    public GameObject PunishImage;
     public GameObject MilkPanel;
+    public GameObject MilkSubmitNotice;
     public Text MilkCountDown;
     public Text MilkScore;
 
@@ -30,29 +32,31 @@ public class GameLogicMaster : MonoBehaviour
         m_FinalQuest.desc = "You have suddenly travelled to Rome... First take Slinger's advice and go and help Vibia!";
         lastAccuracy = 0f;
         lastAnserint = 0;
-        countdownTime = 15f;
+        countdownTime = 30f;
         milkScroe = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            EnterMilk();
-        }
-
         if(isMilkUIShown)
         {
+            PlayerMovement.isTalking = true;
+            Cursor.lockState = CursorLockMode.None;
             countdownTime -= Time.deltaTime;
+            if (milkScroe <= 0)
+            {
+                milkScroe = 0;
+            }
             MilkCountDown.text = "Time:" + countdownTime;
             MilkScore.text = "Score:" + milkScroe;
             if(countdownTime <= 0f)
             {
-                countdownTime = 15f;
+                countdownTime = 30f;
                 isMilkUIShown = false;
+                MilkSubmitNotice.SetActive(true);
                 MilkCountDown.text = "Time:0.0";
-                CancelInvoke("CreateMilk");
+                RepeatCreating(false);
                 for (int i = 0; i < MilkPanel.transform.childCount; i++)
                 {
                     if (MilkPanel.transform.GetChild(i).gameObject.tag == "Milk")
@@ -60,6 +64,14 @@ public class GameLogicMaster : MonoBehaviour
                         Destroy(MilkPanel.transform.GetChild(i).gameObject);
                     }
                 }
+            }
+        }
+
+        if(MilkSubmitNotice.activeSelf)
+        {
+            if(Input.GetKeyDown(KeyCode.T))
+            {
+                SubmitMilkScore();
             }
         }
     }
@@ -103,31 +115,43 @@ public class GameLogicMaster : MonoBehaviour
         Milk.transform.localPosition = new Vector3(x, y, 0);
     }
 
+    public void CreatePunish()
+    {
+        float x = Random.Range(-Screen.width * 2 / 3, Screen.width * 2 / 3);
+        float y = Screen.height / 3;
+        GameObject Punish = Instantiate(PunishImage, MilkPanel.transform);
+        Punish.transform.localPosition = new Vector3(x, y, 0);
+    }
+
     public void EnterMilk()
     {
-        milkUI.SetActive(!milkUI.activeSelf);
-        isMilkUIShown = milkUI.activeSelf;
-        countdownTime = 15f;
-        if (isMilkUIShown)
-        {
-            InvokeRepeating("CreateMilk", 0.1f, 0.6f);
-            milkScroe = 0;
-        }
-        else
-        {
-            CancelInvoke("CreateMilk");
-            for (int i = 0; i < MilkPanel.transform.childCount; i++)
-            {
-                if (MilkPanel.transform.GetChild(i).gameObject.tag == "Milk")
-                {
-                    Destroy(MilkPanel.transform.GetChild(i).gameObject);
-                }
-            }
-        }
+        milkUI.SetActive(true);
+        isMilkUIShown = true;
+        MilkSubmitNotice.SetActive(false);
+        countdownTime = 30f;
+        RepeatCreating(true);
+        milkScroe = 0;
+
     }
 
     public void SubmitMilkScore()
     {
         milkUI.SetActive(false);
+        PlayerMovement.isTalking = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void RepeatCreating(bool isReapting)
+    {
+        if(isReapting)
+        {
+            InvokeRepeating("CreateMilk", 0.1f, 0.6f);
+            InvokeRepeating("CreatePunish", 0.1f, 1.5f);
+        }
+        else
+        {
+            CancelInvoke("CreateMilk");
+            CancelInvoke("CreatePunish");
+        }
     }
 }

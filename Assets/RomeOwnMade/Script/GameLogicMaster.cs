@@ -110,6 +110,10 @@ public class GameLogicMaster : MonoBehaviour
                 m_FinalQuest.title = "Go to Titus";
                 m_FinalQuest.desc = "In order to see the Emperor, we have to go to Titus first to ask for recommendations!";
                 break;
+            case 3://Titus's Quest End
+                m_FinalQuest.title = "Go to Octavius";
+                m_FinalQuest.desc = "Titus has given us a recommendation! Take the letter of recommendation and go to Octavius!";
+                break;
         }
 
     }

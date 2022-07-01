@@ -183,6 +183,7 @@ public class GameLogicMaster : MonoBehaviour
     {
         startPosition = playerPos.transform.position;
         playerPos.transform.position = waitPosition;
+        PlayerMovement.isInArena = true;
     }
 
     public void ReadyToFight()

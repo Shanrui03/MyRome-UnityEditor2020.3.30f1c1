@@ -25,6 +25,7 @@ public class GameLogicMaster : MonoBehaviour
     public GameObject markPoint;
     public GameObject playerPos;
     public GameObject fightPoint;
+    public GameObject[] playerEquip;
 
     public static float lastAccuracy;
     public static int lastAnserint;
@@ -187,5 +188,9 @@ public class GameLogicMaster : MonoBehaviour
     public void ReadyToFight()
     {
         playerPos.transform.position = fightPosition;
+        for (int i = 0; i < playerEquip.Length; i++)
+        {
+            playerEquip[i].gameObject.SetActive(true);
+        }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 using DialogueQuests;
 public class GameLogicMaster : MonoBehaviour
 {
@@ -20,15 +21,26 @@ public class GameLogicMaster : MonoBehaviour
     public Text MilkCountDown;
     public Text MilkScore;
 
+    [Header("FIGHT")]
+    public GameObject markPoint;
+    public GameObject playerPos;
+    public GameObject fightPoint;
+
     public static float lastAccuracy;
     public static int lastAnserint;
     public static bool isMilkUIShown;
     public static float countdownTime;
     public static int milkScroe;
     public static int finalmilkScore;
+
+    private Vector3 startPosition;
+    private Vector3 waitPosition;
+    private Vector3 fightPosition;
     // Start is called before the first frame update
     void Start()
     {
+        waitPosition = markPoint.gameObject.transform.position;
+        fightPosition = fightPoint.gameObject.transform.position;
         m_FinalQuest.title = "Complete Slinger's request";
         m_FinalQuest.desc = "You have suddenly travelled to Rome... First take Slinger's advice and go and help Vibia!";
         lastAccuracy = 0f;
@@ -164,5 +176,16 @@ public class GameLogicMaster : MonoBehaviour
             CancelInvoke("CreateMilk");
             CancelInvoke("CreatePunish");
         }
+    }
+
+    public void EnterArena()
+    {
+        startPosition = playerPos.transform.position;
+        playerPos.transform.position = waitPosition;
+    }
+
+    public void ReadyToFight()
+    {
+        playerPos.transform.position = fightPosition;
     }
 }

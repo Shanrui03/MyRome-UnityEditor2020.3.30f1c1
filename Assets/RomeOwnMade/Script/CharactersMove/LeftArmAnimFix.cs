@@ -5,6 +5,7 @@ using UnityEngine;
 public class LeftArmAnimFix : MonoBehaviour
 {
     public Animator anim;
+    public Collider weaponCol;
     public Vector3 a;
     private void Awake()
     {
@@ -19,5 +20,14 @@ public class LeftArmAnimFix : MonoBehaviour
             leftArm.localEulerAngles += a;
             anim.SetBoneLocalRotation(HumanBodyBones.LeftLowerArm, Quaternion.Euler(leftArm.localEulerAngles));
         }
+    }
+
+    public void WeaponEnable()
+    {
+        weaponCol.enabled = true;
+    }
+    public void WeaponDisable()
+    {
+        weaponCol.enabled = false;
     }
 }

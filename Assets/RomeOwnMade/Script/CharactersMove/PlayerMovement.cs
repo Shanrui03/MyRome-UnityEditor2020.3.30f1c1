@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         isTalking = false;
         isAttacking = false;
         isJumping = false;
-        isInArena = false;
+        isInArena = true;
     }
 
 
@@ -198,6 +198,8 @@ public class PlayerMovement : MonoBehaviour
     {
         playerAnimator.SetLayerWeight(playerAnimator.GetLayerIndex("Defence"), 1.0f);
     }
+
+
 
     private bool CheckState(string stateName,string layerName = "Base Layer")
     {

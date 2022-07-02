@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     public static bool enemyIsDead = false;
     public Collider enemySwordCollider;
     public Animator enemyAnimator;
+    public AudioSource weaponAudio;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class EnemyController : MonoBehaviour
     public void WeaponEnable()
     {
         enemySwordCollider.enabled = true;
+        weaponAudio.PlayOneShot(weaponAudio.clip);
     }
     public void WeaponDisable()
     {

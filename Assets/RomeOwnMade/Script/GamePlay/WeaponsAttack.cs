@@ -13,6 +13,10 @@ public class WeaponsAttack : MonoBehaviour
                 healSystem.AddToCurrentHealth(-100);
             }
 
+            if(other.TryGetComponent<Animator>(out Animator m_ani))
+            {
+                m_ani.SetTrigger("hit");
+            }
         }
     }
 

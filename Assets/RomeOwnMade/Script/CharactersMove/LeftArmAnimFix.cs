@@ -5,6 +5,7 @@ using UnityEngine;
 public class LeftArmAnimFix : MonoBehaviour
 {
     public Animator anim;
+    public AudioSource weaponAudio;
     public Collider weaponCol;
     public Vector3 a;
     private void Awake()
@@ -25,6 +26,7 @@ public class LeftArmAnimFix : MonoBehaviour
     public void WeaponEnable()
     {
         weaponCol.enabled = true;
+        weaponAudio.PlayOneShot(weaponAudio.clip);
     }
     public void WeaponDisable()
     {

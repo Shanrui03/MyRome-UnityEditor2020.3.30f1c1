@@ -12,7 +12,6 @@ public class EnemyWeaponAttack : MonoBehaviour
             {
                 healSystem.AddToCurrentHealth(-200);
             }
-
         }
     }
 }

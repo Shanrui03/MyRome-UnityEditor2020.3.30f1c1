@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         isTalking = false;
         isAttacking = false;
         isJumping = false;
-        isInArena = true;
+        isInArena = false;
         isDefensing = false;
     }
 

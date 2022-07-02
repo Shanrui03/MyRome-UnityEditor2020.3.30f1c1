@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public static bool isTalking = false;
     public static bool isAttacking = false;
     public static bool isInArena = false;
+    public static bool isDefensing = false;
 
     void Awake()
     {
@@ -47,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         isAttacking = false;
         isJumping = false;
         isInArena = true;
+        isDefensing = false;
     }
 
 
@@ -54,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         AniStateControl();
         movement();
+        isDefensing = pi.defense;
     }
 
     void movement()
@@ -199,7 +202,11 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.SetLayerWeight(playerAnimator.GetLayerIndex("Defence"), 1.0f);
     }
 
-
+    public void SetPlayerDead(bool isDead)
+    {
+        playerAnimator.SetBool("death", isDead);
+        isTalking = isDead;
+    }
 
     private bool CheckState(string stateName,string layerName = "Base Layer")
     {

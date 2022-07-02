@@ -23,8 +23,15 @@ public class GameLogicMaster : MonoBehaviour
 
     [Header("FIGHT")]
     public GameObject markPoint;
+    public GameObject startPoint;
     public GameObject playerPos;
+    public GameObject EnemyPos;
     public GameObject fightPoint;
+    public GameObject HpBarForPlayer;
+    public GameObject playerHead;
+    public Button finishBtn;
+    public Button restartBtn;
+    public Text finishTxt;
     public GameObject[] playerEquip;
 
     public static float lastAccuracy;
@@ -34,7 +41,6 @@ public class GameLogicMaster : MonoBehaviour
     public static int milkScroe;
     public static int finalmilkScore;
 
-    private Vector3 startPosition;
     private Vector3 waitPosition;
     private Vector3 fightPosition;
     // Start is called before the first frame update
@@ -179,12 +185,52 @@ public class GameLogicMaster : MonoBehaviour
         }
     }
 
-    public void EnterArena()
+    public void EnterArena(bool isRespawn = false)
     {
-        startPosition = playerPos.transform.position;
         playerPos.transform.position = waitPosition;
         PlayerMovement.isInArena = true;
+        HpBarForPlayer.SetActive(true);
+        Camera.main.gameObject.transform.SetParent(playerHead.transform);
+       
+        if (isRespawn)
+        {
+            playerPos.gameObject.GetComponent<HealthSystemForDummies>().AddToCurrentHealth(1000);
+            EnemyPos.gameObject.GetComponent<HealthSystemForDummies>().AddToCurrentHealth(2000);
+            finishTxt.gameObject.SetActive(false);
+            restartBtn.gameObject.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
+
+    public void LeaveArena()
+    {
+        playerPos.transform.position = startPoint.transform.position;
+        PlayerMovement.isInArena = false;
+        HpBarForPlayer.SetActive(false);
+        Camera.main.gameObject.transform.SetParent(playerPos.transform);
+        for (int i = 0; i < playerEquip.Length; i++)
+        {
+            playerEquip[i].gameObject.SetActive(false);
+        }
+        Cursor.lockState = CursorLockMode.Locked;
+        finishBtn.gameObject.SetActive(false);
+        finishTxt.gameObject.SetActive(false);
+    }
+    public void ShowWinTxt()
+    {
+        finishTxt.gameObject.SetActive(true);
+        finishBtn.gameObject.SetActive(true);
+        finishTxt.text = "Congratulations!you win!";
+        Cursor.lockState = CursorLockMode.None;
+    }
+    public void ShowLoseTxt()
+    {
+        finishTxt.gameObject.SetActive(true);
+        restartBtn.gameObject.SetActive(true);
+        finishTxt.text = "Sorry!You Lose!";
+        Cursor.lockState = CursorLockMode.None;
+    }
+
 
     public void ReadyToFight()
     {

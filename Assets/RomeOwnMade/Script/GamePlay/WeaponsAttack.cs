@@ -8,7 +8,10 @@ public class WeaponsAttack : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" && PlayerMovement.isAttacking)
         {
-            Debug.Log("Attack!!!!!!");
+            if(other.TryGetComponent<HealthSystemForDummies>(out HealthSystemForDummies healSystem))
+            {
+                healSystem.AddToCurrentHealth(-100);
+            }
 
         }
     }

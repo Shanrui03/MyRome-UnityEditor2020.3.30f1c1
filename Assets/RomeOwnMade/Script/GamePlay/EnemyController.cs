@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public Collider enemySwordCollider;
     public Animator enemyAnimator;
     public AudioSource weaponAudio;
+    private float enemyHp;
 
     private void Awake()
     {
@@ -15,6 +16,7 @@ public class EnemyController : MonoBehaviour
         enemyAnimator.SetBool("death", false);
         enemyIsDead = false;
     }
+
     public void StartAIorNot(bool isStart)
     {
         if(this.gameObject.TryGetComponent<BlazeAI>(out BlazeAI m_AI))

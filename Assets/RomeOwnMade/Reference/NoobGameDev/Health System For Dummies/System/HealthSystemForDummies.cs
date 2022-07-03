@@ -2,13 +2,32 @@ using UnityEngine;
 
 public class HealthSystemForDummies : MonoBehaviour
 {
+    private Animator enemyAni;
+    public bool isEnemy;
     public bool IsAlive;
     public float CurrentHealth = 1000;
     public float MaximumHealth = 1000;
 
     public bool HasAnimationWhenHealthChanges = true;
     public float AnimationDuration = 0.1f;
+    private void Awake()
+    {
+        if (gameObject.tag == "Enemy")
+            isEnemy = true;
+        else
+            isEnemy = false;
 
+        if (isEnemy)
+        {
+            enemyAni = gameObject.GetComponent<Animator>();
+        }
+    }
+
+    private void Update()
+    {
+        if(CurrentHealth == 0 && isEnemy)
+            enemyAni.SetBool("death", true);
+    }
     public float CurrentHealthPercentage
     {
         get

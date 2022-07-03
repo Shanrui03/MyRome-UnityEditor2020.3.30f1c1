@@ -13,7 +13,7 @@ namespace DialogueQuests
     {
         public KeyCode talk_key = KeyCode.Space;
         public KeyCode journal_key = KeyCode.J;
-        public KeyCode cancel_key = KeyCode.Backspace;
+        public KeyCode cancel_key = KeyCode.Escape;
         public bool mouse_controls = true;
         public bool keyboard_controls = true;
 

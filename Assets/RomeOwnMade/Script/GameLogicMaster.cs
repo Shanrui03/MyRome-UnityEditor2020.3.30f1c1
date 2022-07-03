@@ -231,7 +231,6 @@ public class GameLogicMaster : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-
     public void ReadyToFight()
     {
         playerPos.transform.position = fightPosition;

@@ -150,6 +150,10 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            playerAnimator.SetFloat("forward", 0f);
+        }
     }
 
     public static void EnterTalking()

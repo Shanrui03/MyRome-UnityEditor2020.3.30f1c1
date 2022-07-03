@@ -44,7 +44,7 @@ namespace DialogueQuests
         }
 
         protected override void Update() {
-            if (PauseMenu.GameIsPaused)
+            if (PauseMenu.GameIsPaused || PlayerMovement.isTalking)
             {
                 Hide(true);
             }
@@ -149,11 +149,14 @@ namespace DialogueQuests
                     Cursor.lockState = CursorLockMode.Locked;
                 }
             }
-  
             else
             {
-                Show();
-                Cursor.lockState = CursorLockMode.None;
+                if (!PlayerMovement.isTalking)
+                {
+                    Show();
+                    Cursor.lockState = CursorLockMode.None;
+                }
+
             }
                
         }
@@ -162,6 +165,8 @@ namespace DialogueQuests
         {
             Hide();
         }
+
+
 
         //For compatiblity with previous version, does same thing than Show()
         public void ShowPanel()

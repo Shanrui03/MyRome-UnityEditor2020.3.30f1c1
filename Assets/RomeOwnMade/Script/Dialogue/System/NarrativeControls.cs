@@ -135,9 +135,16 @@ namespace DialogueQuests
         private void OnPressTalk(bool mouse)
         {
             if (!mouse && onPressTalk != null)
+            {
                 onPressTalk.Invoke();
+            }
+
             if (mouse && onPressTalkMouse != null)
+            {
                 onPressTalkMouse.Invoke();
+            }
+
+
         }
 
         private void OnPressCancel(bool mouse)
@@ -146,6 +153,7 @@ namespace DialogueQuests
                 onPressCancel.Invoke();
             if (mouse && onPressCancelMouse != null)
                 onPressCancelMouse.Invoke();
+           
         }
 
         private void OnPressJournal()

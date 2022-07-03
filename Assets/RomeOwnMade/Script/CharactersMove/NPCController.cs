@@ -7,8 +7,10 @@ public class NPCController : MonoBehaviour
     public ActorData NPCActor;
     public Transform player;
     public GameObject theCompass;
+    public GameObject markerPrefab;
     private Animator NPCAnimator;
     private Transform startTransform;
+    private GameObject tempMarker;
     private void Awake()
     {
         NPCAnimator = this.gameObject.GetComponent<Animator>();
@@ -38,10 +40,13 @@ public class NPCController : MonoBehaviour
             this.gameObject.GetComponent<CompassMarkerScript>().showDistanceLabel = this.theCompass.GetComponent<TheCompassScript>().drawDistanceText;
             this.gameObject.GetComponent<CompassMarkerScript>().showOffScreenHints = true;
             this.gameObject.GetComponent<CompassMarkerScript>().initTrackingOfMarker();
+
+            tempMarker = Instantiate(markerPrefab, transform);
         }
         else
         {
             Destroy(this.gameObject.GetComponent<CompassMarkerScript>());
+            Destroy(tempMarker.gameObject);
         }
     }
 }

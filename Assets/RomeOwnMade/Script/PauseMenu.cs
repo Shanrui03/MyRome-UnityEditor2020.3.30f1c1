@@ -40,14 +40,16 @@ public class PauseMenu : MonoBehaviour
                 isOpen = false;
                 myBag.SetActive(false);
                 FontSight.SetActive(false);
-                Cursor.lockState = CursorLockMode.None;
+                
                 if (GameIsPaused)
                 {
                     Resume();
+                    Cursor.lockState = CursorLockMode.Locked;
                 }
                 else
                 {
                     Pause();
+                    Cursor.lockState = CursorLockMode.None;
                 }
             }
             if (!GameIsPaused)

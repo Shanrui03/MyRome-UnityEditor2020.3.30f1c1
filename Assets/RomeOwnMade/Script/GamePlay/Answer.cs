@@ -248,7 +248,7 @@ public class Answer : MonoBehaviour
         GameLogicMaster.lastAccuracy = Accuracy;
         GameLogicMaster.lastAnserint = anserint;
         Cursor.lockState = CursorLockMode.Locked;
-        PlayerMovement.isTalking = false;
+        //PlayerMovement.isTalking = false;
         this.gameObject.SetActive(false);
     }
 }

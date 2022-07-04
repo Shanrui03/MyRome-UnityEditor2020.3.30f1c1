@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Player Avator")]
     public GameObject playerAvator;
+    public GameObject playerHead;
     public PlayerInput pi;
 
     [Header("Audio")]
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     private CharacterController controller;
     private Animator playerAnimator;
+    private Vector3 startCameraPos;
 
 
     private Vector3 velocity;
@@ -171,11 +173,23 @@ public class PlayerMovement : MonoBehaviour
     {
         pi.inputEnabled = false;
         isJumping = true;
+        if(!isInArena)
+        {
+            startCameraPos = Camera.main.transform.localPosition;
+            Camera.main.gameObject.transform.SetParent(playerHead.transform);
+        }
+        
     }
     public void ExitJumping()
     {
         pi.inputEnabled = true;
         isJumping = false;
+        if(!isInArena)
+        {
+            Camera.main.gameObject.transform.SetParent(transform);
+            Camera.main.gameObject.transform.localPosition = startCameraPos;
+        }
+
     }
 
     public void OnAttack1hAEnter()

@@ -195,7 +195,7 @@ public class GameLogicMaster : MonoBehaviour
         if (isRespawn)
         {
             playerPos.gameObject.GetComponent<HealthSystemForDummies>().AddToCurrentHealth(1000);
-            EnemyPos.gameObject.GetComponent<HealthSystemForDummies>().AddToCurrentHealth(2000);
+            EnemyPos.gameObject.GetComponent<HealthSystemForDummies>().AddToCurrentHealth(1500);
             finishTxt.gameObject.SetActive(false);
             restartBtn.gameObject.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;

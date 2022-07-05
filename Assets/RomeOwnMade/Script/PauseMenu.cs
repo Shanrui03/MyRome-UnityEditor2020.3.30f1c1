@@ -16,15 +16,21 @@ public class PauseMenu : MonoBehaviour
     bool isOpen = false;
     bool isSettingsShown = false;
 
+    [Header("Start UI")]
+    public GameObject LoadingUI;
+    public GameObject StartUI;
+    public GameObject inGameUI;
+    public GameObject theCompass;
+
     public GameObject FontSight;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         settingsMenuUI.SetActive(false);
         FontSight.SetActive(true);
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 1f;
-        GameIsPaused = false;
+        GameIsPaused = true;
         GameIsEnd = false;
         isOpen = false;
         isSettingsShown = false;
@@ -70,13 +76,15 @@ public class PauseMenu : MonoBehaviour
             }
             endUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
-            FontSight.SetActive(false);
+            inGameUI.SetActive(false);
+            theCompass.SetActive(false);
             Time.timeScale = 0f;
             GameIsPaused = true;
         }
     }
 
 
+    #region PauseMenuOptions
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -85,28 +93,30 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
-
     void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
-
-
     public void Again()
     {
         SceneManager.LoadScene("RomeScene");
         Resume();
     }
-
-
+    public void ShowSettings()
+    {
+        settingsMenuUI.SetActive(!settingsMenuUI.activeSelf);
+        pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
+        isSettingsShown = !isSettingsShown;
+    }
     public void LoadMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
+    #endregion
 
+    #region BagOptions
     public void OpenMyBag()
     {
         if (Input.GetKeyDown(KeyCode.B))
@@ -126,7 +136,6 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
-
     public void CloseMyBag()
     {
         isOpen = false;
@@ -134,7 +143,6 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         FontSight.SetActive(true);
     }
-
     public void CloseByButton()
     {
         isOpen = false;
@@ -143,11 +151,21 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         InventoryManager.RefreshItem();
     }
+    #endregion
 
-    public void ShowSettings()
+    #region startOption
+    public void ContinueBtnFunction()
     {
-        settingsMenuUI.SetActive(!settingsMenuUI.activeSelf);
-        pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
-        isSettingsShown = !isSettingsShown;
+        LoadingUI.SetActive(false);
+        StartUI.SetActive(true);
     }
+    public void StartBtnFunction()
+    {
+        StartUI.SetActive(false);
+        inGameUI.SetActive(true);
+        theCompass.SetActive(true);
+        GameIsPaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    #endregion
 }

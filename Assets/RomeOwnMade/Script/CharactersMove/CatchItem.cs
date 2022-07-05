@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CatchItem : MonoBehaviour
 {
     public GameObject ItemNotice;
     public GameObject NPCNotice;
     public GameObject TriggerNotice;
+    public Camera followCamera;
     public float RayDistance = 3.0f;
     // Start is called before the first frame update
     void Start()
@@ -17,8 +19,7 @@ public class CatchItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        Ray ray = followCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, RayDistance) && !PauseMenu.GameIsEnd)
         {

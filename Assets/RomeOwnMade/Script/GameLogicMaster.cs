@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 using DialogueQuests;
+using Cinemachine;
 public class GameLogicMaster : MonoBehaviour
 {
     [Header("QUEST")]
@@ -34,6 +35,15 @@ public class GameLogicMaster : MonoBehaviour
     public Text finishTxt;
     public GameObject[] playerEquip;
 
+    [Header("CAMERA")]
+    public GameObject followCamera;
+    public GameObject startCamera;
+    public GameObject slingerCamera;
+    public CinemachineVirtualCameraBase emperorCamera;
+
+
+    private Vector3 startCameraPos;
+
     public static float lastAccuracy;
     public static int lastAnserint;
     public static bool isMilkUIShown;
@@ -43,8 +53,8 @@ public class GameLogicMaster : MonoBehaviour
 
     private Vector3 waitPosition;
     private Vector3 fightPosition;
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         waitPosition = markPoint.gameObject.transform.position;
         fightPosition = fightPoint.gameObject.transform.position;
@@ -57,7 +67,6 @@ public class GameLogicMaster : MonoBehaviour
         finalmilkScore = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(isMilkUIShown)
@@ -102,6 +111,7 @@ public class GameLogicMaster : MonoBehaviour
         }
     }
 
+    #region quizAndmainPart
     public void EnterQuiz()
     {
         quizUI.gameObject.SetActive(!quizUI.gameObject.activeSelf);
@@ -116,7 +126,6 @@ public class GameLogicMaster : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
-
     public void ChangeDescOfMain(int Quest)
     {
         switch (Quest)
@@ -136,7 +145,9 @@ public class GameLogicMaster : MonoBehaviour
         }
 
     }
+    #endregion
 
+    #region milkpart
     public void CreateMilk()
     {
         float x = Random.Range(-Screen.width*2 / 3, Screen.width*2 / 3);
@@ -144,7 +155,6 @@ public class GameLogicMaster : MonoBehaviour
         GameObject Milk = Instantiate(MilkImage, MilkPanel.transform);
         Milk.transform.localPosition = new Vector3(x, y, 0);
     }
-
     public void CreatePunish()
     {
         float x = Random.Range(-Screen.width * 2 / 3, Screen.width * 2 / 3);
@@ -152,7 +162,6 @@ public class GameLogicMaster : MonoBehaviour
         GameObject Punish = Instantiate(PunishImage, MilkPanel.transform);
         Punish.transform.localPosition = new Vector3(x, y, 0);
     }
-
     public void EnterMilk()
     {
         milkUI.SetActive(true);
@@ -163,14 +172,12 @@ public class GameLogicMaster : MonoBehaviour
         milkScroe = 0;
 
     }
-
     public void SubmitMilkScore()
     {
         milkUI.SetActive(false);
         PlayerMovement.isTalking = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
     public void RepeatCreating(bool isReapting)
     {
         if(isReapting)
@@ -184,13 +191,16 @@ public class GameLogicMaster : MonoBehaviour
             CancelInvoke("CreatePunish");
         }
     }
+    #endregion
 
+    #region fightpart
     public void EnterArena(bool isRespawn = false)
     {
         playerPos.transform.position = waitPosition;
         PlayerMovement.isInArena = true;
         HpBarForPlayer.SetActive(true);
-        Camera.main.gameObject.transform.SetParent(playerHead.transform);
+        startCameraPos = followCamera.transform.localPosition;
+        followCamera.gameObject.transform.SetParent(playerHead.transform);
        
         if (isRespawn)
         {
@@ -201,13 +211,13 @@ public class GameLogicMaster : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
-
     public void LeaveArena()
     {
         playerPos.transform.position = startPoint.transform.position;
         PlayerMovement.isInArena = false;
         HpBarForPlayer.SetActive(false);
-        Camera.main.gameObject.transform.SetParent(playerPos.transform);
+        followCamera.gameObject.transform.SetParent(playerPos.transform);
+        followCamera.gameObject.transform.localPosition = startCameraPos;
         for (int i = 0; i < playerEquip.Length; i++)
         {
             playerEquip[i].gameObject.SetActive(false);
@@ -230,7 +240,6 @@ public class GameLogicMaster : MonoBehaviour
         finishTxt.text = "Sorry!You Lose!";
         Cursor.lockState = CursorLockMode.None;
     }
-
     public void ReadyToFight()
     {
         playerPos.transform.position = fightPosition;
@@ -239,4 +248,44 @@ public class GameLogicMaster : MonoBehaviour
             playerEquip[i].gameObject.SetActive(true);
         }
     }
+    #endregion
+
+    #region camerapart
+    public void SwitchStartCamera()
+    {
+        Invoke("EnableMouseLook", 2f);
+        startCamera.SetActive(false);
+        followCamera.SetActive(true);
+    }
+    public void SwitchSlingerCamera(bool changeTo)
+    {
+        if(changeTo)
+        {
+            followCamera.SetActive(false);
+            slingerCamera.SetActive(true);
+        }
+        else
+        {
+            followCamera.SetActive(true);
+            slingerCamera.SetActive(false);
+        }
+    }
+    public void SwitchEmperorCamera(bool changeTo)
+    {
+        if (changeTo)
+        {
+            followCamera.SetActive(false);
+            emperorCamera.gameObject.SetActive(true);
+        }
+        else
+        {
+            followCamera.SetActive(true);
+            emperorCamera.gameObject.SetActive(false);
+        }
+    }
+    public void EnableMouseLook()
+    {
+        followCamera.GetComponent<MouseLook>().enabled = true;
+    }
+    #endregion
 }

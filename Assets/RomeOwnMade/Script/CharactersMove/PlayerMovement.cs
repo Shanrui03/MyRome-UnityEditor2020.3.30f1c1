@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Avator")]
     public GameObject playerAvator;
     public GameObject playerHead;
+    public GameObject followCamera;
     public PlayerInput pi;
 
     [Header("Audio")]
@@ -173,10 +174,11 @@ public class PlayerMovement : MonoBehaviour
     {
         pi.inputEnabled = false;
         isJumping = true;
+        walkAudio.Stop();
         if(!isInArena)
         {
-            startCameraPos = Camera.main.transform.localPosition;
-            Camera.main.gameObject.transform.SetParent(playerHead.transform);
+            startCameraPos = followCamera.transform.localPosition;
+            followCamera.gameObject.transform.SetParent(playerHead.transform);
         }
         
     }
@@ -186,8 +188,8 @@ public class PlayerMovement : MonoBehaviour
         isJumping = false;
         if(!isInArena)
         {
-            Camera.main.gameObject.transform.SetParent(transform);
-            Camera.main.gameObject.transform.localPosition = startCameraPos;
+            followCamera.gameObject.transform.SetParent(transform);
+            followCamera.gameObject.transform.localPosition = startCameraPos;
         }
 
     }

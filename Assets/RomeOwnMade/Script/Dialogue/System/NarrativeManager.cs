@@ -68,7 +68,8 @@ namespace DialogueQuests
 
         void UnpauseGameInTalk()
         {
-            PlayerMovement.LeaveTalking();
+            if(PlayerMovement.isTalking)
+                PlayerMovement.LeaveTalking();
             if (PauseMenu.isBagOpen || QuestPanel.isJournalOpen)
                 Cursor.lockState = CursorLockMode.None;
         }

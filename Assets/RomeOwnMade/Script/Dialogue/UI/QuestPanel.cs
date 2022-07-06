@@ -23,12 +23,14 @@ namespace DialogueQuests
         private int filter_index = 0;
 
         private static QuestPanel _instance;
+        public static bool isJournalOpen = false;
 
         protected override void Awake()
         {
             base.Awake();
             _instance = this;
             line_template.gameObject.SetActive(false);
+            isJournalOpen = false;
         }
 
         protected override void Start()
@@ -44,10 +46,11 @@ namespace DialogueQuests
         }
 
         protected override void Update() {
-            if (PauseMenu.GameIsPaused || PlayerMovement.isTalking)
+            if ((PauseMenu.GameIsPaused || PlayerMovement.isTalking) && IsVisible())
             {
                 Hide(true);
             }
+            isJournalOpen = IsVisible();
             base.Update();
         }
 

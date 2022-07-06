@@ -13,7 +13,7 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject myBag;
     public GameObject endUI;
-    bool isOpen = false;
+    public static bool isBagOpen = false;
     bool isSettingsShown = false;
 
     [Header("Start UI")]
@@ -32,7 +32,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = true;
         GameIsEnd = false;
-        isOpen = false;
+        isBagOpen = false;
         isSettingsShown = false;
     }
 
@@ -43,7 +43,7 @@ public class PauseMenu : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                isOpen = false;
+                isBagOpen = false;
                 myBag.SetActive(false);
                 FontSight.SetActive(false);
                 
@@ -63,7 +63,7 @@ public class PauseMenu : MonoBehaviour
                 OpenMyBag();
             }
         }
-        else if(PlayerMovement.isTalking && isOpen)
+        else if(PlayerMovement.isTalking && isBagOpen)
         {
             CloseMyBag();
         }
@@ -121,9 +121,9 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            isOpen = !isOpen;
-            myBag.SetActive(isOpen);
-            if(isOpen)
+            isBagOpen = !isBagOpen;
+            myBag.SetActive(isBagOpen);
+            if(isBagOpen)
             {
                 Cursor.lockState = CursorLockMode.None;
                 FontSight.SetActive(false);
@@ -138,14 +138,14 @@ public class PauseMenu : MonoBehaviour
     }
     public void CloseMyBag()
     {
-        isOpen = false;
+        isBagOpen = false;
         myBag.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         FontSight.SetActive(true);
     }
     public void CloseByButton()
     {
-        isOpen = false;
+        isBagOpen = false;
         myBag.SetActive(false);
         FontSight.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;

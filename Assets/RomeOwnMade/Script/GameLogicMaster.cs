@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Playables;
 using DialogueQuests;
 using Cinemachine;
 public class GameLogicMaster : MonoBehaviour
@@ -39,7 +40,9 @@ public class GameLogicMaster : MonoBehaviour
     public GameObject followCamera;
     public GameObject startCamera;
     public GameObject slingerCamera;
+    public GameObject[] villaCameras;
     public CinemachineVirtualCameraBase emperorCamera;
+    public PlayableDirector villaTimeline;
 
 
     private Vector3 startCameraPos;
@@ -286,6 +289,20 @@ public class GameLogicMaster : MonoBehaviour
     public void EnableMouseLook()
     {
         followCamera.GetComponent<MouseLook>().enabled = true;
+    }
+    public void SwitchTimeLine(bool changeTo)
+    {
+        if(changeTo)
+        {
+            villaTimeline.Play();
+        }
+        else
+        {
+            villaTimeline.Stop();
+            foreach (GameObject villaCamera in villaCameras)
+                villaCamera.SetActive(false);
+        }
+       
     }
     #endregion
 }

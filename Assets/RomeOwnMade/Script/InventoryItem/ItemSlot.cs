@@ -9,22 +9,17 @@ public class ItemSlot : MonoBehaviour
     public Image slotImage;
     public Text slotNum;
     public GameObject DropBtn;
-    bool isClicked = false;
+    public bool isClicked = false;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         isClicked = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void ItemOnClicked()
     {
+        OnClickEnable();
         isClicked = !isClicked;
         DropBtn.SetActive(isClicked);
         InventoryManager.UpdateItemInfo(slotItem.itemInfo);
@@ -47,4 +42,18 @@ public class ItemSlot : MonoBehaviour
             InventoryManager.ShowTreasureNotice();
         }
     }
+    public void OnClickEnable()
+    {
+        foreach (Transform child in this.gameObject.transform.parent.transform)
+        {
+            if(child.gameObject != this.gameObject)
+            {
+                child.gameObject.GetComponent<ItemSlot>().isClicked = false;
+                child.gameObject.GetComponent<ItemSlot>().DropBtn.SetActive(false);
+            }
+               
+        }
+
+    }
+
 }

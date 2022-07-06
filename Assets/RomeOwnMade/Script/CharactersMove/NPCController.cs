@@ -49,4 +49,9 @@ public class NPCController : MonoBehaviour
             Destroy(tempMarker.gameObject);
         }
     }
+
+    public void SwitchToWaving(bool changeTo)
+    {
+        NPCAnimator.SetBool("Waving", changeTo);
+    }
 }

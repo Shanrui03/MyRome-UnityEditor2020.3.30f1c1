@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(move * speed * Time.deltaTime);
             if (move != Vector3.zero)
             {
-                if (!walkAudio.isPlaying && isGround)
+                if (!walkAudio.isPlaying && !isJumping)
                 {
                     walkAudio.Play();
                 }

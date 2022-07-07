@@ -289,6 +289,7 @@ public class GameLogicMaster : MonoBehaviour
     public void EnableMouseLook()
     {
         followCamera.GetComponent<MouseLook>().enabled = true;
+        PlayerMovement.playerCanMove = true;
     }
     public void SwitchTimeLine(bool changeTo)
     {

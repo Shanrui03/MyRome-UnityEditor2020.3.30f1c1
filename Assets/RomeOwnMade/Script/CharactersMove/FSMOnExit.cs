@@ -20,9 +20,10 @@ public class FSMOnExit : StateMachineBehaviour
     //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        foreach(var msg in onExitMessages)
+        foreach (var msg in onExitMessages)
         {
             animator.gameObject.SendMessageUpwards(msg);
+
         }
     }
 

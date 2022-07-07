@@ -11,9 +11,10 @@ public class PlayerInput : MonoBehaviour
     public string keyRight = "d";
     
     public string keyRun = "LeftShift";
-    public string keyB = "space";
-    public string keyC = "q";
-    public string keyD = "r";
+    public string keyJump = "space";
+    public string keyAttack = "q";
+    public string keyDefence = "r";
+    public string keyRoll = "f";
     [Header("Ouptut Signals")]
     public float Dup;
     public float Dright;
@@ -29,6 +30,9 @@ public class PlayerInput : MonoBehaviour
 
     public bool attack;
     private bool lastAttack;
+
+    public bool roll;
+    private bool lastRoll;
 
     [Header("Others")]
     public bool inputEnabled = true;
@@ -67,10 +71,10 @@ public class PlayerInput : MonoBehaviour
         run = Input.GetKey(keyRun);
 
         //Defense State
-        defense = Input.GetKey(keyD);
+        defense = Input.GetKey(keyDefence);
 
         //Jump State
-        bool newJump = Input.GetKey(keyB);
+        bool newJump = Input.GetKey(keyJump);
         if (newJump != lastJump && newJump)
             jump = true;
         else
@@ -78,12 +82,20 @@ public class PlayerInput : MonoBehaviour
         lastJump = newJump;
 
         //Attack State
-        bool newAttack = Input.GetKey(keyC);
+        bool newAttack = Input.GetKey(keyAttack);
         if (newAttack != lastAttack && newAttack)
             attack = true;
         else
             attack = false;
         lastAttack = newAttack;
+
+        //Roll State
+        bool newRoll = Input.GetKey(keyRoll);
+        if (newRoll != lastRoll && newRoll)
+            roll = true;
+        else
+            roll = false;
+        lastRoll = newRoll;
 
     }
 

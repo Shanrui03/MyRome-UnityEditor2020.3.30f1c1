@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Avator")]
     public GameObject playerAvator;
     public GameObject playerHead;
+    public CinemachineBrain m_brain;
     public GameObject followCamera;
+    public GameObject jumpCamera;
     public PlayerInput pi;
 
     [Header("Audio")]
@@ -26,45 +29,67 @@ public class PlayerMovement : MonoBehaviour
 
     private CharacterController controller;
     private Animator playerAnimator;
+    private float jumpingTime;
     private Vector3 startCameraPos;
 
 
     private Vector3 velocity;
     private Vector3 move;
-    private bool isGround;
     private bool isJumping;
 
     private float lerpTarget;
 
     private float speed;
+    public static bool isGround = false;
     public static bool isTalking = false;
     public static bool isAttacking = false;
     public static bool isInArena = false;
     public static bool isDefensing = false;
+    public static bool playerCanMove = false;
 
     void Awake()
     {
         controller = GetComponent<CharacterController>();
         playerAnimator = playerAvator.GetComponent<Animator>();
         pi = GetComponent<PlayerInput>();
+        jumpingTime = 0f;
+        isGround = true;
         isTalking = false;
         isAttacking = false;
         isJumping = false;
         isInArena = false;
         isDefensing = false;
+        playerCanMove = false;
     }
 
 
     void Update()
     {
-        AniStateControl();
-        movement();
-        isDefensing = pi.defense;
+        if(playerCanMove)
+        {
+            AniStateControl();
+            movement();
+            isDefensing = pi.defense;
+        }
     }
 
     void movement()
     {
         isGround = controller.isGrounded;
+        playerAnimator.SetBool("isGround", isGround);
+        if(!isGround)
+        {
+            jumpingTime += Time.deltaTime;
+            if(jumpingTime >= 1.8f)
+            {
+                playerAnimator.SetBool("isFalling", true);
+                jumpingTime = 0f;
+            }
+        }
+        else
+        {
+            playerAnimator.SetBool("isFalling", false);
+        }
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
@@ -133,6 +158,12 @@ public class PlayerMovement : MonoBehaviour
                 playerAnimator.SetTrigger("jump");
             }
 
+            //Roll
+            if(pi.roll && move != Vector3.zero)
+            {
+                playerAnimator.SetTrigger("roll");
+            }
+
             if (isInArena)
             {
                 //Attack
@@ -172,27 +203,43 @@ public class PlayerMovement : MonoBehaviour
 
     public void EnterJumping()
     {
+        m_brain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;
         pi.inputEnabled = false;
         isJumping = true;
         walkAudio.Stop();
         if(!isInArena)
         {
-            startCameraPos = followCamera.transform.localPosition;
-            followCamera.gameObject.transform.SetParent(playerHead.transform);
+            followCamera.SetActive(false);
+            jumpCamera.SetActive(true);
         }
         
     }
     public void ExitJumping()
     {
+        m_brain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.EaseInOut;
+        if (!isInArena && isJumping)
+        {
+            followCamera.SetActive(true);
+            jumpCamera.SetActive(false);
+        }
         pi.inputEnabled = true;
         isJumping = false;
-        if(!isInArena)
-        {
-            followCamera.gameObject.transform.SetParent(transform);
-            followCamera.gameObject.transform.localPosition = startCameraPos;
-        }
 
     }
+    public void OnFallingEnter()
+    {
+        m_brain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;
+        pi.inputEnabled = false;
+        isJumping = true;
+        walkAudio.Stop();
+        if (!isInArena)
+        {
+            followCamera.SetActive(false);
+            jumpCamera.SetActive(true);
+        }
+    }
+
+
 
     public void OnAttack1hAEnter()
     {

@@ -161,7 +161,10 @@ public class PlayerMovement : MonoBehaviour
             //Roll
             if(pi.roll && move != Vector3.zero)
             {
-                playerAnimator.SetTrigger("roll");
+                if(pi.Dup >= 0)
+                    playerAnimator.SetTrigger("roll");
+                else
+                    playerAnimator.SetTrigger("rollback");
             }
 
             if (isInArena)

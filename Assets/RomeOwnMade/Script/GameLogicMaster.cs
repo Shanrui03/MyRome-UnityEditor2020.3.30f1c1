@@ -46,6 +46,7 @@ public class GameLogicMaster : MonoBehaviour
 
 
     private Vector3 startCameraPos;
+    private TimeSet m_TimeSet;
 
     public static float lastAccuracy;
     public static int lastAnserint;
@@ -61,6 +62,7 @@ public class GameLogicMaster : MonoBehaviour
     {
         waitPosition = markPoint.gameObject.transform.position;
         fightPosition = fightPoint.gameObject.transform.position;
+        m_TimeSet = GetComponent<TimeSet>();
         m_FinalQuest.title = "Complete Slinger's request";
         m_FinalQuest.desc = "You have suddenly travelled to Rome... First take Slinger's advice and go and help Vibia!";
         lastAccuracy = 0f;
@@ -68,6 +70,7 @@ public class GameLogicMaster : MonoBehaviour
         countdownTime = 30f;
         milkScroe = 0;
         finalmilkScore = 0;
+        m_TimeSet.TimeSetSpeed = 0;
     }
 
     void Update()
@@ -290,6 +293,7 @@ public class GameLogicMaster : MonoBehaviour
     {
         followCamera.GetComponent<MouseLook>().enabled = true;
         PlayerMovement.playerCanMove = true;
+        m_TimeSet.TimeSetSpeed = 1f;
     }
     public void SwitchTimeLine(bool changeTo)
     {

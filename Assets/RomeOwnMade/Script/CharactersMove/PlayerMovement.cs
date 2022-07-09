@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private Vector3 move;
     private bool isJumping;
+    private bool isRolling;
 
     private float lerpTarget;
 
@@ -57,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         isTalking = false;
         isAttacking = false;
         isJumping = false;
+        isRolling = false;
         isInArena = false;
         isDefensing = false;
         playerCanMove = false;
@@ -167,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
                     playerAnimator.SetTrigger("rollback");
             }
 
-            if (isInArena)
+            if (isInArena && !isRolling)
             {
                 //Attack
                 if (pi.attack)
@@ -185,6 +187,11 @@ public class PlayerMovement : MonoBehaviour
                 {
                     playerAnimator.SetBool("defense", pi.defense);
                 }
+            }
+            else if (isRolling)
+            {
+                playerAnimator.SetLayerWeight(playerAnimator.GetLayerIndex("Defence"), 0.0f);
+                playerAnimator.SetBool("defense", false);
             }
         }
         else
@@ -240,6 +247,17 @@ public class PlayerMovement : MonoBehaviour
             followCamera.SetActive(false);
             jumpCamera.SetActive(true);
         }
+    }
+
+    public void EnterRolling()
+    {
+        EnterJumping();
+        isRolling = true;
+    }
+    public void ExitRolling()
+    {
+        ExitJumping();
+        isRolling = false;
     }
 
 

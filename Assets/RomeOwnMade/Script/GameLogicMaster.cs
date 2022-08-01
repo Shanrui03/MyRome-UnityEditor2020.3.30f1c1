@@ -205,8 +205,12 @@ public class GameLogicMaster : MonoBehaviour
         playerPos.transform.position = waitPosition;
         PlayerMovement.isInArena = true;
         HpBarForPlayer.SetActive(true);
-        startCameraPos = followCamera.transform.localPosition;
-        followCamera.gameObject.transform.SetParent(playerHead.transform);
+        if(!isRespawn)
+        {
+            startCameraPos = followCamera.transform.localPosition;
+            followCamera.gameObject.transform.SetParent(playerHead.transform);
+        }
+
        
         if (isRespawn)
         {

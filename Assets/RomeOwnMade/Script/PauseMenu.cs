@@ -39,7 +39,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PlayerMovement.isTalking && !isSettingsShown)
+        if (!PlayerMovement.isTalking && !isSettingsShown && PlayerMovement.playerCanMove)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {

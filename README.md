@@ -12,5 +12,4 @@ There is also a more technically oriented introductory video [here](https://yout
 
 # Download Link for demo reel
 * MEGA Link for Playable version(Build-and-Run Version):
-<br>
 [DEMO](https://mega.nz/file/DuQnUDCI#nS5dvFs0cFgo0W8vAoo_urUNspxf-dfQU3JYBEoP4Vs)

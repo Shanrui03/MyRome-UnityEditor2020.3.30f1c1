@@ -1,6 +1,6 @@
 # MyRome
 Final work for CSC8599 Project dissertation.  
-<br> The project can be run with UnityEditor version **2020.3.30f1c1** and higher versions with **f1c1** suffix;
+<br> The project can be run with UnityEditor version ***2020.3.30f1c1*** and higher versions with ***f1c1*** suffix;
 All intergrations and model files are located in the MyRome/Assets/RomeOwnMade/Reference/ path.
 
 # Documents
